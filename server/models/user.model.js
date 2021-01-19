@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
-const {Schema} = mongoose;
 const bcrypt = require('bcrypt');
 
-const shoeSchema = new Schema({
+const shoeSchema = new mongoose.Schema({
     shoeCompany: {
         type: String,
         required: [true, 'Please enter the shoe company!'],
@@ -20,9 +19,9 @@ const shoeSchema = new Schema({
     }
 });
 
-const UserSchema = new Schema({
+const UserSchema = new mongoose.Schema({
     firstName: {
-        type: String, 
+        type: String,
         required: [true, 'Please enter your first name!']
     },
     lastName: {
@@ -61,5 +60,4 @@ UserSchema.pre('save', function(next){
     });
 });
 
-const User = mongoose.model('User', UserSchema);
-module.exports = User;
+module.exports.User = mongoose.model('User', UserSchema);
