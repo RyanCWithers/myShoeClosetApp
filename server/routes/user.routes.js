@@ -6,6 +6,7 @@ module.exports = app =>{
     app.post("/api/myShoeCloset/logout", UserController.logoutUser);
 
     app.get("/api/myShoeCloset/user/", UserController.getLoggedInUser);
-    app.post("/api/myShoeCloset/user/createShoe", UserController.createShoe);
-    app.delete("/api/myShoeCloset/user/deleteShoe", UserController.deleteShoe);
-}
+    app.get("/api/myShoeCloset/user/shoes", UserController.getShoes);
+    app.put("/api/myShoeCloset/user/createShoe", UserController.createShoe);
+    app.put("/api/myShoeCloset/user/deleteShoe/:shoeId", UserController.deleteShoe);
+};
