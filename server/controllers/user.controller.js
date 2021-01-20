@@ -3,9 +3,14 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 module.exports = {
-    registerUser: (req, res) =>{
+    registerUser: async(req, res) =>{
         const {firstName, lastName, email, password, shoes} = req.body;
-        console.log(firstName, lastName, email, password, shoes);
+        
+        const userExists = await User.findOne({email: req.body.email});
+
+        if (userExists){
+            return(res.json({msg: "Sorry. There is already a user that exists with that email!"}));
+        }
         User.create(req.body)
             .then(user => {
                 user.save();
@@ -43,10 +48,45 @@ module.exports = {
     },
     
     getLoggedInUser: (req, res) =>{
+        if(!req.cookies.usertoken){
+            return(res.json({msg: "You need to log in first!"}));
+        }
         const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
-
-        User.findById(decodedJWT.payload._id)
-            .then(user => res.json('Success!'))
+        User.findOne(decodedJWT.payload._id)
+            .then(user => res.json(user))
             .catch(err => res.json(err));
+    },
+
+    createShoe: (req, res) =>{
+        if(!req.cookies.usertoken){
+            return(res.json({msg: "You need to log in first!"}));
+        }
+
+        const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
+        User.findOneAndUpdate(
+            decodedJWT.payload._id,
+            {$push:{shoes: req.body}},
+            {new: true})
+
+            .then(user=> res.json(user))
+            .catch(err => res.json(err));
+
+    },
+
+    deleteShoe: (req, res) =>{
+        // if(!req.cookies.usertoken){
+        //     return(res.json({msg: "You need to log in first!"}));
+        // }
+
+        // const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
+        // User.findOneAndUpdate(
+        //     decodedJWT.payload._id,
+        //     {$pull:{shoes:{_id: req.params.shoeId}}},
+        //     {new: true}
+        // )
+        //     .then(user => res.json(user))
+        //     .catch(err => res.json(err));
     }
+
+
 }
