@@ -12,7 +12,7 @@ const shoeSchema = new mongoose.Schema({
         type: String
     },
     shoeSize: {
-        type: Number,
+        type: String,
     }
 });
 

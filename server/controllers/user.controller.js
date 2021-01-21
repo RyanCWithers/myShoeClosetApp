@@ -73,16 +73,16 @@ module.exports = {
 
     },
 
-    getShoes: (req, res) =>{
-        if(!req.cookies.usertoken){
-            return(res.json({msg: "You need to log in first!"}));
-         }
+    // getShoes: (req, res) =>{
+    //     if(!req.cookies.usertoken){
+    //         return(res.json({msg: "You need to log in first!"}));
+    //      }
 
-        const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
-        User.findOne(decodedJWT.payload._id)
-         .then(user => res.json(user.shoes))
-         .catch(err => res.json(err));
-    },
+    //     const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
+    //     User.findOne(decodedJWT.payload._id)
+    //      .then(user => res.json(user.shoes))
+    //      .catch(err => res.json(err));
+    // },
 
     deleteShoe: (req, res) =>{
         if(!req.cookies.usertoken){
