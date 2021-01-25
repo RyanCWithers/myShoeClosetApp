@@ -86,6 +86,52 @@ module.exports = {
 
             .then(user => res.json(user))
             .catch(err => res.json(err));
+    },
+
+    getShoe: (req, res) =>{
+        if(!req.cookies.usertoken){
+            return(res.json({msg: "You need to log in first!"}));
+         }
+ 
+         const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
+        User.findOne(decodedJWT.payload._id)
+            .then(user => {
+                let idx = 0;
+                for(let i =0; i< user.shoes.length; i++){
+                    if(user.shoes[i] == req.params.shoeId){
+                        idx = i;
+                        break;
+                    }
+                };
+                res.json(user.shoes[idx]);
+            })
+            .catch(err => res.json(err));
+    },
+
+    // updateShoe: (req, res) =>{
+    //     if(!req.cookies.usertoken){
+    //         return(res.json({msg: "You need to log in first!"}));
+    //      }
+ 
+    //      const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
+    //      const {shoeName, shoeImgLink, shoeCompany, shoeSize} = req.body;
+
+    //      User.findOne(decodedJWT.payload._id)
+    //         .then(user => {
+    //             for(let i =0; i< user.shoes.length; i++){
+    //                 if(user.shoes[i] == req.params.shoeId){
+    //                     user.shoes[i] = {
+    //                         shoeName,
+    //                         shoeImgLink,
+    //                         shoeCompany,
+    //                         shoeSize
+    //                     };
+    //                     break;
+    //                 }
+    //             };
+    //             res.json(user.shoes);
+    //         })
+    //         .catch(err => res.json(err));
     }
 
 

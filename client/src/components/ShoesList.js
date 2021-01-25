@@ -27,7 +27,7 @@ const ShoesList = ({shoes}) =>{
                         <span>{item.shoeSize}</span>
                     </li>
                 )):
-                <p>Loading...</p>
+                null
                 }
             </ul>
             
