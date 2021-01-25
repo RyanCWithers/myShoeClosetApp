@@ -106,7 +106,7 @@ module.exports = {
                 res.json(user.shoes[idx]);
             })
             .catch(err => res.json(err));
-    },
+    }
 
     // updateShoe: (req, res) =>{
     //     if(!req.cookies.usertoken){
@@ -132,7 +132,7 @@ module.exports = {
     //             res.json(user.shoes);
     //         })
     //         .catch(err => res.json(err));
-    }
+    // }
 
 
 }
