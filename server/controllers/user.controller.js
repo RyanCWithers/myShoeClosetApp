@@ -4,8 +4,7 @@ const jwt = require('jsonwebtoken');
 
 module.exports = {
     registerUser: async(req, res) =>{
-        const {firstName, lastName, email, password, shoes} = req.body;
-        
+                
         const userExists = await User.findOne({email: req.body.email});
 
         if (userExists){
@@ -25,15 +24,18 @@ module.exports = {
 
     loginUser: async(req, res) =>{
         const user = await User.findOne({email: req.body.email});
-
+        
         if(user === null){
-            return(res.json('Invalid login attempt!'))
+            return(res.json('Invalid login attempt 1!'));
         }
 
         const correctPassword = await bcrypt.compare(req.body.password, user.password);
+
+        console.log("This is the user password", user.password);
+        console.log("This is the req body password", req.body.password);
         
         if(!correctPassword) {
-            return(res.json('Invalid login attempt!'))
+            return(res.json('Invalid login attempt 2!'));
         }
 
         const userToken = jwt.sign({id: user._id}, process.env.SECRET_KEY);
@@ -103,20 +105,36 @@ module.exports = {
             .catch(err => res.json(err));
     },
 
-    updateShoe: (req, res) =>{
-        if(!req.cookies.usertoken){
-            return(res.json({msg: "You need to log in first!"}));
-        }
+    // updateShoe: (req, res) =>{
+    //     if(!req.cookies.usertoken){
+    //         return(res.json({msg: "You need to log in first!"}));
+    //     }
 
-        const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
+    //     const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
         
-        User.findOne(decodedJWT.payload._id)
-            .then(user => {
-                const shoe = user.shoes.id(req.params.shoeId);
-                shoe.set(req.body);
-                user.save();
-                res.json(user);
-            })
+    //     User.findOne(decodedJWT.payload._id)
+    //         .then(user => {
+    //             const shoe = user.shoes.id(req.params.shoeId);
+    //             shoe.set(req.body);
+    //             user.save();
+    //             res.json(user);
+    //         })
+    //         .catch(err => res.json(err));
+    // },
+
+    updateShoe: (req, res) =>{
+        
+        User.findOneAndUpdate(decodedJWT.payload._id ,
+            {$set: {shoes : {
+                _id : req.params.shoeId,
+                shoeName : req.body.shoeName,
+                shoeCompany : req.body.shoeCompany,
+                shoeSize : req.body.shoeSize,
+                shoeImgLink : req.body.shoeImgLink
+            }}},
+            {new: true}
+        )
+            .then(user => res.json(user))
             .catch(err => res.json(err));
     }
 

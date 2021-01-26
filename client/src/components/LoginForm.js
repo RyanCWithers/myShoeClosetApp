@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import { navigate } from '@reach/router';
 
 const LoginForm = props =>{
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [errs, setErrs] = useState('');
+    // const [errs, setErrs] = useState('');
 
     const onSubmitHandler = (e) =>{
         e.preventDefault();
@@ -14,9 +15,9 @@ const LoginForm = props =>{
             password
         })
             .then(res => {
-                //After you login, the page should automatically navigate to the user page.
+                console.log(res);
             })
-            .catch(err => console.log('There was an error logging in!'))
+            .catch(err => console.log(err));
     }
 
     return(

@@ -19,13 +19,16 @@ const UpdateShoePage = props =>{
 
     const onSubmitProp = (updatedShoe) =>{
         axios.put('http://localhost:8000/api/myShoeCloset/user/update/' + shoeId, updatedShoe)
-            .then(res => console.log('Successful update!'))
+            .then(res => console.log(res))
             .catch(err => console.log(err));
     };
 
     return(
         <div>
-            <ShoeForm initialState = {state} onSubmitProp = {onSubmitProp} />
+            {loaded?
+            <ShoeForm initialState = {state} onSubmitProp = {onSubmitProp} />:
+            <span>Loading...</span>
+            }
         </div>
     );
 };

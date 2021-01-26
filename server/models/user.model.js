@@ -41,17 +41,17 @@ const UserSchema = new mongoose.Schema({
     shoes: [shoeSchema]
 }, {timestamps: true});
 
-// UserSchema.virtual("confirmPassword")
-//     .get(()=>this._confirmPassword)
-//     .set(val => (this._confirmPassword = val));
+UserSchema.virtual("confirmPassword")
+    .get(()=>this._confirmPassword)
+    .set(val => (this._confirmPassword = val));
 
-// UserSchema.pre('validate', function(next) {
-//      console.log(this._confirmPassword)
-//    if (this.password !== this._confirmPassword) {
-//      this.invalidate('confirmPassword', 'Password must match confirm password.');
-//    }
-//    next();
-//  });
+UserSchema.pre('validate', function(next) {
+     console.log(this.confirmPassword);
+   if (this.password !== this.confirmPassword) {
+        this.invalidate('confirmPassword', 'Password must match confirm password.');
+   }
+   next();
+});
 
 UserSchema.pre('save', function(next){
     bcrypt.hash(this.password, 10).then(hash =>{
