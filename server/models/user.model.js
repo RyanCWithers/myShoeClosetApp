@@ -41,9 +41,9 @@ const UserSchema = new mongoose.Schema({
     shoes: [shoeSchema]
 }, {timestamps: true});
 
-UserSchema.virtual("confirmPassword")
-    .get(()=>this._confirmPassword)
-    .set(val => (this._confirmPassword = val));
+// UserSchema.virtual("confirmPassword")
+//     .get(()=>this._confirmPassword)
+//     .set(val => (this._confirmPassword = val));
 
 // UserSchema.pre('validate', function(next) {
 //      console.log(this._confirmPassword)
