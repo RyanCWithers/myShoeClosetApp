@@ -1,12 +1,4 @@
 import React, {useReducer} from 'react';
-import axios from 'axios';
-
-const initialState = {
-    shoeCompany: '',
-    shoeSize: '',
-    shoeImgLink: '',
-    shoeName: '',
-};
 
 function reducer(state, action){
     return({
@@ -15,8 +7,9 @@ function reducer(state, action){
     })
 }
 
-const NewShoeForm = props =>{
+const ShoeForm = props =>{
 
+    const {initialState, onSubmitProp} = props;
     const [state, dispatch] = useReducer(reducer, initialState);
 
     function handleChange(e){
@@ -30,11 +23,9 @@ const NewShoeForm = props =>{
     const onSubmitHandler = (e) =>{
         e.preventDefault();
         if(state.shoeCompany !== '' && state.shoeSize !== '' && state.shoeName !== ''){ //if the required fields are filled out, then you can submit.
-            axios.put('http://localhost:8000/api/myShoeCloset/user/createShoe', state)
-                .then(res => console.log(res))
-                .catch(err => console.log(err));
+            onSubmitProp(state);
         } else {
-            alert("Please fill out all required fields!");
+            alert("Please fill out all fields!");
         }
     };
 
@@ -48,6 +39,7 @@ const NewShoeForm = props =>{
                         name = "shoeCompany"
                         onChange = {handleChange}
                         placeholder = "Required"
+                        value = {state.shoeCompany}
                     />
                 </label>
                 <label>
@@ -57,6 +49,7 @@ const NewShoeForm = props =>{
                         name = "shoeName"
                         onChange = {handleChange}
                         placeholder = "Required"
+                        value = {state.shoeName}
                     />
                 </label>
                 <label>
@@ -66,6 +59,7 @@ const NewShoeForm = props =>{
                         name = "shoeSize"
                         onChange = {handleChange}
                         placeholder = "Required"
+                        value = {state.shoeSize}
                     />
                 </label>
                 <label>
@@ -75,6 +69,7 @@ const NewShoeForm = props =>{
                         name = "shoeImgLink"
                         onChange = {handleChange}
                         placeholder = "Optional"
+                        value = {state.shoeImgLink}
                     />
                 </label>
                 <input
@@ -86,4 +81,4 @@ const NewShoeForm = props =>{
     )
 };
 
-export default NewShoeForm;
+export default ShoeForm;
