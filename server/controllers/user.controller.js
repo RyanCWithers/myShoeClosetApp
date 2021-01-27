@@ -104,23 +104,6 @@ module.exports = {
             .catch(err => res.json(err));
     },
 
-    // updateShoe: (req, res) =>{
-    //     if(!req.cookies.usertoken){
-    //         return(res.json({msg: "You need to log in first!"}));
-    //     }
-
-    //     const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
-        
-    //     User.findOne(decodedJWT.payload._id)
-    //         .then(user => {
-    //             const shoe = user.shoes.id(req.params.shoeId);
-    //             shoe.set(req.body);
-    //             user.save();
-    //             res.json(user);
-    //         })
-    //         .catch(err => res.json(err));
-    // },
-
     updateShoe: (req, res) =>{
         
         User.findOneAndUpdate(decodedJWT.payload._id ,

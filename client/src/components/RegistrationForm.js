@@ -33,7 +33,7 @@ const RegistrationForm = props =>{
         e.preventDefault();
         axios.post('http://localhost:8000/api/myShoeCloset/register', state)
             .then(res => {
-                //This should automatically route the user to their page after they have successfully registered.
+                console.log(res);
             })
             .catch(err => console.log(err));
     };

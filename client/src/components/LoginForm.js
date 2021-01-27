@@ -1,20 +1,21 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import { navigate } from '@reach/router';
 
-const LoginForm = props =>{
+const LoginForm = ({setLoggedIn}) =>{
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
     // const [errs, setErrs] = useState('');
 
     const onSubmitHandler = (e) =>{
         e.preventDefault();
-        axios.post("http://localhost:8000/api/myShoeCloset/login", {
-            email,
-            password
-        })
+        axios.post("http://localhost:8000/api/myShoeCloset/login/", 
+            {email, password},
+            {withCredentials: true}
+            )
             .then(res => {
+                setLoggedIn(true);
                 console.log(res);
             })
             .catch(err => console.log(err));
