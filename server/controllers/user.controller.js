@@ -20,6 +20,7 @@ module.exports = {
                     .json(user);
             })
             .catch(err => res.json(err));
+        
     },
 
     loginUser: async(req, res) =>{
@@ -30,19 +31,16 @@ module.exports = {
         }
 
         const correctPassword = await bcrypt.compare(req.body.password, user.password);
-
-        console.log("This is the user password", user.password);
-        console.log("This is the req body password", req.body.password);
         
         if(!correctPassword) {
             return(res.json('Invalid login attempt 2!'));
         }
 
-        const userToken = jwt.sign({id: user._id}, process.env.SECRET_KEY);
+        const userToken = jwt.sign({_id: user._id}, process.env.SECRET_KEY);
 
         res
             .cookie("usertoken", userToken, process.env.SECRET_KEY, {httpOnly: true})
-            .json('Successful login attempt!');
+            .json(user);
     },
 
     logoutUser: (req, res) =>{
@@ -55,9 +53,10 @@ module.exports = {
             return(res.json({msg: "You need to log in first!"}));
         }
         const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
-        User.findOne(decodedJWT.payload._id)
+
+        User.findOne({_id: decodedJWT.payload._id})
             .then(user => res.json(user))
-            .catch(err => res.json(err));
+            .catch(err => res.json(err)); 
     },
 
     createShoe: (req, res) =>{
