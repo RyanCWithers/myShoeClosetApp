@@ -2,23 +2,24 @@ import './App.css';
 import LoginPage from './views/LoginPage';
 import MainUserPage from './views/MainUserPage';
 import CreateShoePage from './views/CreateShoePage';
-import {Router} from '@reach/router';
+import {Router, navigate} from '@reach/router';
 import {useState} from 'react';
 
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
 
-  // if(!loggedIn){
-  //   return(<LoginPage setLoggedIn = {setLoggedIn}/>)
-  // }
+  if(!loggedIn){
+    navigate("/api/myShoeCloset/login");
+  }
+  
   return (
     
     <div className="App">
       <Router>
-        <LoginPage path = "/api/myShoeCloset" setLoggedIn = {setLoggedIn}/>
-        <MainUserPage path = "/api/myShoeCloset/user"/>
-        <CreateShoePage path = "/api/myShoeCloset/user/createShoe"/>
+            <MainUserPage path = "/api/myShoeCloset/user"/>
+            <CreateShoePage path = "/api/myShoeCloset/user/createShoe"/>
+            <LoginPage path = "/api/myShoeCloset/login" setLoggedIn = {setLoggedIn}/>
       </Router>     
     </div>
   );

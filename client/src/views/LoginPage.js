@@ -2,10 +2,10 @@ import React from 'react';
 import LoginForm from '../components/LoginForm';
 import RegistrationForm from '../components/RegistrationForm';
 
-const LoginPage = props =>{
+const LoginPage = ({setLoggedIn}) =>{
     return(
         <div>
-            <LoginForm />
+            <LoginForm setLoggedIn = {setLoggedIn} />
             <RegistrationForm />
         </div>
     )
