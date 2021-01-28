@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import { navigate } from '@reach/router';
 
 const LoginForm = ({setLoggedIn}) =>{
 
@@ -15,7 +16,8 @@ const LoginForm = ({setLoggedIn}) =>{
             {withCredentials: true}
             )
             .then(res => {
-                setLoggedIn(true);
+                document.cookie = "name=isLoggedIn";
+                navigate('/api/myShoeCloset/user/')
                 console.log(res);
             })
             .catch(err => console.log(err));

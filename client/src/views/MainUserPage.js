@@ -11,12 +11,13 @@ const MainUserPage = props =>{
     const [loaded, setLoaded] = useState(false);
 
     useEffect(()=>{
-        axios.get("http://localhost:8000/api/myShoeCloset/user")
+        axios.get("http://localhost:8000/api/myShoeCloset/user", {withCredentials: true})
             .then(user => {
-                setFirstName(user.firstName);
-                setLastName(user.lastName);
-                setShoes(user.shoes);
+                setFirstName(user.data.firstName);
+                setLastName(user.data.lastName);
+                setShoes(user.data.shoes);
                 setLoaded(true);
+                console.log(user.data);
             })
             .catch(err => console.log(err))
     }, [])
@@ -25,7 +26,11 @@ const MainUserPage = props =>{
         <div>
             <Navbar />
             {loaded?
-            <ShoesList shoes = {shoes} />:
+            <>
+                <h1>Hello {firstName} {lastName}!</h1>
+                <ShoesList shoes = {shoes} />
+            </>
+            :
             <span>Loading...</span>
             }
 

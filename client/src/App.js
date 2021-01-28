@@ -8,14 +8,14 @@ import {useState} from 'react';
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
-
-  if(!loggedIn){
-    navigate("/api/myShoeCloset/login");
+  // document.cookie = 'isLoggedIn=false';
+  if(!document.cookie){
+     navigate("/api/myShoeCloset/login");
   }
   
   return (
-    
     <div className="App">
+      
       <Router>
             <MainUserPage path = "/api/myShoeCloset/user"/>
             <CreateShoePage path = "/api/myShoeCloset/user/createShoe"/>

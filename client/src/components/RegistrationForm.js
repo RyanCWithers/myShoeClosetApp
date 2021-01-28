@@ -40,7 +40,7 @@ const RegistrationForm = props =>{
 
     return(
         <div>
-            <form>
+            <form onSubmit = {onSubmitHandler}>
                 <label>
                     <span>First Name:</span>
                     <input
