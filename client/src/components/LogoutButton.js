@@ -8,7 +8,7 @@ const LogoutButton = () =>{
         axios.post("http://localhost:8000/api/myShoeCloset/logout/", {}, {withCredentials: true})
             .then((res) => {
                 console.log(res);
-                document.cookie = "name=isLoggedIn;Max-Age=0";
+                document.cookie = "isLoggedIn=;Max-Age=0";
                 navigate('/api/myShoeCloset/login');
             })
             .catch((err) => console.log(err))

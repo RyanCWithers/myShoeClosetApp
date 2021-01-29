@@ -16,7 +16,7 @@ const LoginForm = (props) =>{
             {withCredentials: true}
             )
             .then(res => {
-                document.cookie = "name=isLoggedIn";
+                document.cookie = "isLoggedIn=";
                 navigate('/api/myShoeCloset/user/')
                 console.log(res);
             })

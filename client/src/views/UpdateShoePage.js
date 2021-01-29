@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import ShoeForm from '../components/ShoeForm';
+import {navigate} from '@reach/router';
 
 const UpdateShoePage = props =>{
 
@@ -9,7 +10,7 @@ const UpdateShoePage = props =>{
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() =>{
-        axios.get('http://localhost:8000/api/myShoeCloset/user/' + shoeId)
+        axios.get('http://localhost:8000/api/myShoeCloset/user/' + shoeId, {withCredentials: true})
             .then(res => {
                 setState(res.data);
                 setLoaded(true);
@@ -18,8 +19,11 @@ const UpdateShoePage = props =>{
     }, [shoeId]);
 
     const onSubmitProp = (updatedShoe) =>{
-        axios.put('http://localhost:8000/api/myShoeCloset/user/update/' + shoeId, updatedShoe)
-            .then(res => console.log(res))
+        axios.put('http://localhost:8000/api/myShoeCloset/user/update/' + shoeId, updatedShoe, {withCredentials: true})
+            .then(res => {
+                console.log(res);
+                navigate('/api/myShoeCloset/user');
+            })
             .catch(err => console.log(err));
     };
 

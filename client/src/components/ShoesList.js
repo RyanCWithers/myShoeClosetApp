@@ -1,13 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import DeleteShoeButton from './DeleteShoeButton';
 import {Link} from '@reach/router';
 
 const ShoesList = ({shoes}) =>{
 
+    const [shoeList, setShoeList] = useState(shoes);
+
+    const deleteShoeFromPage = (shoeId) =>{
+        setShoeList(shoeList.filter((item) => item._id !== shoeId));
+    };
+    
     return(
         <div>
             <ul>
-                {shoes.map((item, index) =>(
+                {shoeList.map((item, index) =>(
                     <li key = {index}>
                         <img src = {item.shoeImgLink} alt = "Shoe image not available"></img>
                         <span>{item.shoeName}</span>
@@ -16,7 +22,7 @@ const ShoesList = ({shoes}) =>{
                         <Link to = {"/api/myShoeCloset/user/" + item._id}>
                             <button>Edit</button>
                         </Link>
-                        <DeleteShoeButton shoeId = {item._id} />
+                        <DeleteShoeButton shoeId = {item._id} removeFromDom = {deleteShoeFromPage}/>
                     </li>
                 ))}
             </ul>

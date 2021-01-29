@@ -96,7 +96,7 @@ module.exports = {
          }
  
         const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
-        User.findOne(decodedJWT.payload._id)
+        User.findOne({_id: decodedJWT.payload._id})
             .then(user => {
                 const shoe = user.shoes.id(req.params.shoeId);
                 res.json(shoe);
@@ -110,14 +110,14 @@ module.exports = {
          }
  
         const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
-        User.findOneAndUpdate(decodedJWT.payload._id ,
-            {$set: {shoes : {
-                _id : req.params.shoeId,
-                shoeName : req.body.shoeName,
-                shoeCompany : req.body.shoeCompany,
-                shoeSize : req.body.shoeSize,
-                shoeImgLink : req.body.shoeImgLink
-            }}},
+
+        User.findOneAndUpdate({_id: decodedJWT.payload._id , "shoes._id" : req.params.shoeId} ,
+            {$set: {
+                "shoes.$.shoeName" : req.body.shoeName,
+                "shoes.$.shoeCompany" : req.body.shoeCompany,
+                "shoes.$.shoeSize" : req.body.shoeSize,
+                "shoes.$.shoeImgLink" : req.body.shoeImgLink
+            }},
             {new: true}
         )
             .then(user => res.json(user))

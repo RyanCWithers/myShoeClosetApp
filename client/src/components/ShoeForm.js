@@ -74,7 +74,7 @@ const ShoeForm = props =>{
                 </label>
                 <input
                     type = "submit"
-                    value = "Create Shoe"
+                    value = "Save Shoe"
                 />
             </form>
         </div>
