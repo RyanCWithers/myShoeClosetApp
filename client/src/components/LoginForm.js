@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import { navigate } from '@reach/router';
 
-const LoginForm = ({setLoggedIn}) =>{
+const LoginForm = (props) =>{
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

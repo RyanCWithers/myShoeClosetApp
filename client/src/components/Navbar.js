@@ -5,7 +5,8 @@ import LogoutButton from '../components/LogoutButton';
 const Navbar = props =>{
     return(
         <div>
-            <Link to = "/api/myShoeCloset/user"><span>Home</span></Link>
+            <Link to = "/api/myShoeCloset/user">Home</Link>
+            <Link to = "/api/myShoeCloset/user/createShoe">Add Shoe</Link>
             <LogoutButton />
         </div>
     );

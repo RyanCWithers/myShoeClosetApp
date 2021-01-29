@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import ShoeForm from '../components/ShoeForm';
 import Navbar from '../components/Navbar';
+import {navigate} from '@reach/router';
+
 const CreateShoePage = props =>{
 
     const initialState = {
@@ -12,8 +14,11 @@ const CreateShoePage = props =>{
     };
 
     const onSubmitHandler = (newShoe) =>{
-        axios.post('http://localhost:8000/api/myShoeCloset/user/createShoe', newShoe)
-            .then(res => console.log(res))
+        axios.put('http://localhost:8000/api/myShoeCloset/user/createShoe', newShoe, {withCredentials: true})
+            .then(res => {
+                console.log(res);
+                navigate("/api/myShoeCloset/user");
+            })
             .catch(err => console.log(err));
     };
 

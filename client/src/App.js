@@ -2,13 +2,12 @@ import './App.css';
 import LoginPage from './views/LoginPage';
 import MainUserPage from './views/MainUserPage';
 import CreateShoePage from './views/CreateShoePage';
+import UpdateShoePage from './views/UpdateShoePage';
+
 import {Router, navigate} from '@reach/router';
-import {useState} from 'react';
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(false);
-  // document.cookie = 'isLoggedIn=false';
   if(!document.cookie){
      navigate("/api/myShoeCloset/login");
   }
@@ -19,7 +18,8 @@ function App() {
       <Router>
             <MainUserPage path = "/api/myShoeCloset/user"/>
             <CreateShoePage path = "/api/myShoeCloset/user/createShoe"/>
-            <LoginPage path = "/api/myShoeCloset/login" setLoggedIn = {setLoggedIn}/>
+            <LoginPage path = "/api/myShoeCloset/login"/>
+            <UpdateShoePage path = "/api/myShoeCloset/user/:shoeId" />
       </Router>     
     </div>
   );

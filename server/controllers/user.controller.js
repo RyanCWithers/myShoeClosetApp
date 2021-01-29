@@ -66,7 +66,7 @@ module.exports = {
 
         const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
         User.findOneAndUpdate(
-            decodedJWT.payload._id,
+            {_id: decodedJWT.payload._id},
             {$push:{shoes: req.body}},
             {new: true})
 
@@ -82,7 +82,7 @@ module.exports = {
 
         const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
         User.findOneAndUpdate(
-            decodedJWT.payload._id,
+            {_id: decodedJWT.payload._id},
             {$pull:{shoes: {_id: req.params.shoeId}}},
             {new: true})
 
@@ -95,7 +95,7 @@ module.exports = {
             return(res.json({msg: "You need to log in first!"}));
          }
  
-         const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
+        const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
         User.findOne(decodedJWT.payload._id)
             .then(user => {
                 const shoe = user.shoes.id(req.params.shoeId);
@@ -105,7 +105,11 @@ module.exports = {
     },
 
     updateShoe: (req, res) =>{
-        
+        if(!req.cookies.usertoken){
+            return(res.json({msg: "You need to log in first!"}));
+         }
+ 
+        const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
         User.findOneAndUpdate(decodedJWT.payload._id ,
             {$set: {shoes : {
                 _id : req.params.shoeId,

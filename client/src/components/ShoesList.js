@@ -1,4 +1,6 @@
 import React from 'react';
+import DeleteShoeButton from './DeleteShoeButton';
+import {Link} from '@reach/router';
 
 const ShoesList = ({shoes}) =>{
 
@@ -11,6 +13,10 @@ const ShoesList = ({shoes}) =>{
                         <span>{item.shoeName}</span>
                         <span>{item.shoeCompany}</span>
                         <span>{item.shoeSize}</span>
+                        <Link to = {"/api/myShoeCloset/user/" + item._id}>
+                            <button>Edit</button>
+                        </Link>
+                        <DeleteShoeButton shoeId = {item._id} />
                     </li>
                 ))}
             </ul>
