@@ -31,9 +31,20 @@ const RegistrationForm = props =>{
 
     const onSubmitHandler = (e) =>{
         e.preventDefault();
+
+        if(state.confirmPassword !== state.password){
+            return(alert('Your passwords must match!'));
+        }
+
         axios.post('http://localhost:8000/api/myShoeCloset/register', state)
             .then(res => {
                 console.log(res);
+                if(res.data.errors){
+                    setErrs(res.data.errors);
+                    console.log(errs);
+                }else{
+                    alert("Succesful registration!");
+                }
             })
             .catch(err => console.log(err));
     };
@@ -48,7 +59,13 @@ const RegistrationForm = props =>{
                         name = "firstName"
                         onChange = {handleChange}
                         placeholder = "Please enter your first name."
-                    />                    
+                    />
+                    {
+                        errs.firstName?
+                        <span>{errs.firstName.message}</span>:
+                        null
+                    }
+
                 </label>
                 <label>
                     <span>Last Name:</span>
@@ -57,7 +74,12 @@ const RegistrationForm = props =>{
                         name = "lastName"
                         onChange = {handleChange}
                         placeholder = "Please enter your last name."
-                    />                    
+                    />
+                    {
+                        errs.lastName?
+                        <span>{errs.lastName.message}</span>:
+                        null
+                    }              
                 </label>
                 <label>
                     <span>Email:</span>
@@ -66,25 +88,40 @@ const RegistrationForm = props =>{
                         name = "email"
                         onChange = {handleChange}
                         placeholder = "Please enter your email."
-                    />                    
+                    />
+                    {
+                        errs.email?
+                        <span>{errs.email.message}</span>:
+                        null
+                    }                    
                 </label>
                 <label>
                     <span>Password:</span>
                     <input
-                        type = "text"
+                        type = "password"
                         name = "password"
                         onChange = {handleChange}
                         placeholder = "Please enter your password."
-                    />                    
+                    /> 
+                    {
+                        errs.password?
+                        <span>{errs.password.message}</span>:
+                        null
+                    }                  
                 </label>
                 <label>
                     <span>Confirm Password:</span>
                     <input
-                        type = "text"
+                        type = "password"
                         name = "confirmPassword"
                         onChange = {handleChange}
                         placeholder = "Please confirm your password."
-                    />                    
+                    />
+                    {
+                        (state.password && state.confirmPassword && state.password !== state.confirmPassword)?
+                        <p>Passwords don't match</p>:
+                        null
+                    }            
                 </label>
                 <input
                     type = "submit"

@@ -27,13 +27,13 @@ module.exports = {
         const user = await User.findOne({email: req.body.email});
         
         if(user === null){
-            return(res.json('Invalid login attempt 1!'));
+            return(res.json('Invalid login attempt!'));
         }
 
         const correctPassword = await bcrypt.compare(req.body.password, user.password);
         
         if(!correctPassword) {
-            return(res.json('Invalid login attempt 2!'));
+            return(res.json('Invalid login attempt!'));
         }
 
         const userToken = jwt.sign({_id: user._id}, process.env.SECRET_KEY);
