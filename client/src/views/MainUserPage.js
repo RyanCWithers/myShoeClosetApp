@@ -23,7 +23,7 @@ const MainUserPage = props =>{
     }, [])
 
     return(
-        <div>
+        <div className = "container-fluid">
             <Navbar />
             {loaded?
             <>
