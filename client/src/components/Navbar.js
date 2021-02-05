@@ -14,7 +14,7 @@ const Navbar = props =>{
     };
 
     return(
-        <nav className = "navbar navbar-dark navbar-expand-md" id = "navBar">
+        <nav className = "navbar navbar-dark navbar-expand-md fixed-top" id = "navBar">
             <div className = "container">
                 <span className = "navbar-brand">myShoeCloset</span>
                 <button 

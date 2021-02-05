@@ -24,7 +24,7 @@ const MainUserPage = props =>{
 
     return(
         <div className = "container-fluid">
-            <Navbar className = "fixed-top"/>
+            <Navbar/>
             {loaded?
             <>
                 <h1>Hello {firstName} {lastName}!</h1>

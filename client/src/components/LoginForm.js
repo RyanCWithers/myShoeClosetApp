@@ -17,7 +17,7 @@ const LoginForm = (props) =>{
             )
             .then(res => {
                 console.log(res);
-                if(res.data == "Invalid login attempt!"){
+                if(res.data === "Invalid login attempt!"){
                     setErrs(res.data);
                 } else {
                     document.cookie = "isLoggedIn=";

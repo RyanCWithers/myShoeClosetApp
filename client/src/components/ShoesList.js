@@ -15,7 +15,8 @@ const ShoesList = ({shoes}) =>{
             <ul>
                 {shoeList.map((item, index) =>(
                     <li key = {index}>
-                        <img src = {item.shoeImgLink} alt = "Shoe image not available"></img>
+                        <img src = {item.shoeImgLink} alt="#"></img>
+                        {/*  add shoe image for stock photos */}
                         <span>{item.shoeName}</span>
                         <span>{item.shoeCompany}</span>
                         <span>{item.shoeSize}</span>
