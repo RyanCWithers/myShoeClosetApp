@@ -28,36 +28,50 @@ const LoginForm = (props) =>{
     }
 
     return(
-        <div>
-            <form onSubmit = {onSubmitHandler}>
-                <label>
-                    <span>Email:</span>
-                    <input 
-                        type = "text"
-                        name = "email"
-                        onChange = {(e) => setEmail(e.target.value)}
-                        placeholder = "Please enter your email."
-                    />
-                </label>
-                <label>
-                    <span>Password:</span>
-                    <input 
-                        type = "password"
-                        name = "password"
-                        onChange = {(e) => setPassword(e.target.value)}
-                        placeholder = "Please enter your password."
-                    />
-                </label>
-                <input 
-                    type = "submit"
-                    value = "Login"
-                />
-                {
-                    errs?
-                    <span>{errs}</span>:
-                    null
-                }
-            </form>
+        <div className = "container">
+            <div className = "card p-4">
+                <h3 className = "card-title">User Login</h3> 
+                <form onSubmit = {onSubmitHandler} className = "card-body">
+                    <div className = "form-group row justify-content-center mb-2">
+                        <label htmlFor = "email" className = "col-form-label col-md-4">Email</label>
+                        <div className = "col-md-8">
+                            <input 
+                                type = "text"
+                                name = "email"
+                                onChange = {(e) => setEmail(e.target.value)}
+                                placeholder = "Please enter your email."
+                                className = "form-control"
+                            />
+                        </div>
+                    </div>
+                    <div className = "form-group row justify-content-center mb-2">
+                        <label htmlFor = "password" className = "col-form-label col-md-4">Password</label>
+                        <div className = "col-md-8">
+                            <input 
+                                type = "password"
+                                name = "password"
+                                onChange = {(e) => setPassword(e.target.value)}
+                                placeholder = "Please enter your password."
+                                className = "form-control"
+                            />  
+                        </div>
+                    </div>
+                    <div className = "form-group row justify-content-center">
+                        <div className = "col-md-3 col-lg-1">
+                            <input 
+                                type = "submit"
+                                value = "Login"
+                                className = "btn btn-primary"
+                            />
+                        </div>
+                    </div>
+                    {
+                        errs?
+                        <span className = "text-danger">{errs}</span>:
+                        null
+                    }
+                </form>
+            </div>
         </div>
     )
 };
