@@ -1,5 +1,6 @@
 import React, {useReducer, useState} from 'react';
 import axios from 'axios';
+import { navigate } from '@reach/router';
 
 const initialState = {
     firstName: '',
@@ -44,90 +45,125 @@ const RegistrationForm = props =>{
                     console.log(errs);
                 }else{
                     alert("Succesful registration!");
+                    navigate('/api/myShoeCloset/login');
                 }
             })
             .catch(err => console.log(err));
     };
 
     return(
-        <div>
-            <form onSubmit = {onSubmitHandler}>
-                <label>
-                    <span>First Name:</span>
-                    <input
-                        type = "text"
-                        name = "firstName"
-                        onChange = {handleChange}
-                        placeholder = "Please enter your first name."
-                    />
-                    {
-                        errs.firstName?
-                        <span>{errs.firstName.message}</span>:
-                        null
-                    }
-
-                </label>
-                <label>
-                    <span>Last Name:</span>
-                    <input
-                        type = "text"
-                        name = "lastName"
-                        onChange = {handleChange}
-                        placeholder = "Please enter your last name."
-                    />
-                    {
-                        errs.lastName?
-                        <span>{errs.lastName.message}</span>:
-                        null
-                    }              
-                </label>
-                <label>
-                    <span>Email:</span>
-                    <input
-                        type = "text"
-                        name = "email"
-                        onChange = {handleChange}
-                        placeholder = "Please enter your email."
-                    />
-                    {
-                        errs.email?
-                        <span>{errs.email.message}</span>:
-                        null
-                    }                    
-                </label>
-                <label>
-                    <span>Password:</span>
-                    <input
-                        type = "password"
-                        name = "password"
-                        onChange = {handleChange}
-                        placeholder = "Please enter your password."
-                    /> 
-                    {
-                        errs.password?
-                        <span>{errs.password.message}</span>:
-                        null
-                    }                  
-                </label>
-                <label>
-                    <span>Confirm Password:</span>
-                    <input
-                        type = "password"
-                        name = "confirmPassword"
-                        onChange = {handleChange}
-                        placeholder = "Please confirm your password."
-                    />
-                    {
-                        (state.password && state.confirmPassword && state.password !== state.confirmPassword)?
-                        <p>Passwords don't match</p>:
-                        null
-                    }            
-                </label>
-                <input
-                    type = "submit"
-                    value = "Register"
-                />
-            </form>
+        <div className = "container-sm">
+            <div className = "card p-4">
+                <h3 className = "card-title">Register</h3>
+                <form onSubmit = {onSubmitHandler} className ="card-body">
+                    <div className = "form-group row mb-2">
+                        <label htmlFor = "firstName" className = "col-form-label col col-lg-2 d-none d-lg-inline">Name</label>
+                        <div className = "col-lg-5">
+                            <input
+                                type = "text"
+                                name = "firstName"
+                                onChange = {handleChange}
+                                placeholder = "First Name"
+                                className = "form-control"
+                            />
+                            {
+                                errs.firstName?
+                                <div className = "row">
+                                    <div className = "form-text text-danger">
+                                        {errs.firstName.message}   
+                                    </div>
+                                </div>:
+                                null
+                            }
+                        </div>
+                        <div className = "col-lg-5">
+                            <input
+                                type = "text"
+                                name = "lastName"
+                                onChange = {handleChange}
+                                placeholder = "Last Name"
+                                className = "form-control"
+                            />
+                            {
+                                errs.lastName?
+                                <div className = "row">
+                                    <div className = "form-text text-danger">
+                                        {errs.lastName.message}   
+                                    </div>
+                                </div>:
+                                null
+                            }
+                        </div>
+                    </div>
+                    <div className = "form-group row mb-2">
+                        <label htmlFor = "email" className = "col-form-label col col-lg-2 d-none d-lg-inline">Email</label>
+                        <div className = "col-lg-5">
+                            <input
+                                type = "text"
+                                name = "email"
+                                onChange = {handleChange}
+                                placeholder = "Email"
+                                className = "form-control"
+                            />
+                            {
+                                errs.email?
+                                <div className = "row">
+                                    <div className = "form-text text-danger">
+                                        {errs.email.message}   
+                                    </div>
+                                </div>:
+                                null
+                            }
+                        </div> 
+                    </div>
+                    <div className = "form-group row mb-2">
+                        <label htmlFor = "password" className = "col-form-label col-lg-2 d-none d-lg-inline">Password</label>
+                        <div className = "col-lg-5">
+                            <input
+                                type = "password"
+                                name = "password"
+                                onChange = {handleChange}
+                                placeholder = "Password"
+                                className = "form-control"
+                            />
+                            {
+                                errs.password?
+                                <div className = "row">
+                                    <div className = "form-text text-danger">
+                                        {errs.password.message}   
+                                    </div>
+                                </div>:
+                                null
+                            }
+                        </div>
+                        <div className = "col-lg-5">
+                            <input
+                                type = "password"
+                                name = "confirmPassword"
+                                onChange = {handleChange}
+                                placeholder = "Confirm Password"
+                                className = "form-control d-block d-md-inline"
+                            />
+                            {
+                                (state.password && state.confirmPassword && state.password !== state.confirmPassword)?
+                                <div className = "row">
+                                    <div className = "form-text text-danger">
+                                        <p>Passwords do not match!</p>   
+                                    </div>
+                                </div>:
+                                null
+                            } 
+                        </div>
+                    </div>
+                    <div className = "col">
+                        <input
+                            type = "submit"
+                            value = "Register"
+                            className = "btn btn-primary"
+                        />
+                    </div>
+                </form>
+            </div>
         </div>
     )
 };

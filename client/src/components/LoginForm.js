@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import { navigate } from '@reach/router';
+import { navigate, Link } from '@reach/router';
 
 const LoginForm = (props) =>{
 
@@ -37,32 +37,30 @@ const LoginForm = (props) =>{
                 setFieldEmpty({emailMsg: '', passwordMsg: 'Please enter your password!'});
             }
         }
-        
-    }
+    };
 
     return(
         <div className = "container-sm">
-            <div className = "row">
-                <div className = "card p-4">
-                    <h3 className = "card-title">User Login</h3> 
-                    <form onSubmit = {onSubmitHandler} className = "card-body">
-                        {
-                            errs?
-                            <span className = "text-danger">{errs}</span>:
-                            null
-                        }
-                        <div className = "form-group row justify-content-center">
-                            <label htmlFor = "email" className = "col-form-label col-md-2">Email</label>
-                            <div className = "col-md-8">
-                                <input 
-                                    type = "text"
-                                    name = "email"
-                                    onChange = {(e) => setEmail(e.target.value)}
-                                    placeholder = "Please enter your email."
-                                    className = "form-control"
-                                />
-                            </div>
+            <div className = "card p-4">
+                <h3 className = "card-title">User Login</h3> 
+                <form onSubmit = {onSubmitHandler} className = "card-body justify-content-center">
+                    {
+                        errs?
+                        <span className = "text-danger">{errs}</span>:
+                        null
+                    }
+                    <div className = "form-group row">
+                        <label htmlFor = "email" className = "col-form-label col-lg-2 d-none d-lg-inline">Email</label>
+                        <div className = "col-md-8">
+                            <input 
+                                type = "text"
+                                name = "email"
+                                onChange = {(e) => setEmail(e.target.value)}
+                                placeholder = "Email"
+                                className = "form-control"
+                            />
                         </div>
+                    </div>
                         {
                             fieldEmpty.emailMsg?
                             <div className = "form-group row">
@@ -72,18 +70,18 @@ const LoginForm = (props) =>{
                             </div>:
                             null
                         }
-                        <div className = "form-group row justify-content-center mt-2">
-                            <label htmlFor = "password" className = "col-form-label col-md-2">Password</label>
-                            <div className = "col-md-8">
-                                <input 
-                                    type = "password"
-                                    name = "password"
-                                    onChange = {(e) => setPassword(e.target.value)}
-                                    placeholder = "Please enter your password."
-                                    className = "form-control"
-                                />  
-                            </div>
+                    <div className = "form-group row mt-2">
+                        <label htmlFor = "password" className = "col-form-label col-lg-2 d-none d-lg-inline">Password</label>
+                        <div className = "col-md-8">
+                            <input 
+                                type = "password"
+                                name = "password"
+                                onChange = {(e) => setPassword(e.target.value)}
+                                placeholder = "Password"
+                                className = "form-control"
+                            />  
                         </div>
+                    </div>
                         {
                             fieldEmpty.passwordMsg?
                             <div className = "form-group row">
@@ -93,17 +91,19 @@ const LoginForm = (props) =>{
                             </div>:
                             null
                         }
-                        <div className = "form-group row justify-content-center mt-2">
-                            <div className = "col">
-                                <input 
-                                    type = "submit"
-                                    value = "Login"
-                                    className = "btn btn-primary"
-                                />
-                            </div>
+                    <div className = "form-group row mt-2">
+                        <div className = "col">
+                            <input 
+                                type = "submit"
+                                value = "Login"
+                                className = "btn btn-primary"
+                            />
                         </div>
-                    </form>
-                </div>
+                    </div>
+                    <Link to = "/api/myShoeCloset/register">
+                        <p className = "form-text">New User?</p>
+                    </Link>
+                </form>
             </div>
         </div>
     )

@@ -3,7 +3,7 @@ import LoginPage from './views/LoginPage';
 import MainUserPage from './views/MainUserPage';
 import CreateShoePage from './views/CreateShoePage';
 import UpdateShoePage from './views/UpdateShoePage';
-
+import RegistrationPage from './views/RegistrationPage';
 import {Router, navigate} from '@reach/router';
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
             <CreateShoePage path = "/api/myShoeCloset/user/createShoe"/>
             <LoginPage path = "/api/myShoeCloset/login"/>
             <UpdateShoePage path = "/api/myShoeCloset/user/:shoeId" />
+            <RegistrationPage path ="/api/myShoeCloset/register"/>
       </Router>     
     </div>
   );

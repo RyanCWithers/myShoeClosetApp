@@ -1,14 +1,12 @@
 import React from 'react';
 import LoginForm from '../components/LoginForm';
-import RegistrationForm from '../components/RegistrationForm';
 
 const LoginPage = ({setLoggedIn}) =>{
     return(
-        <div>
+        <div className = "container-sm">
             <LoginForm setLoggedIn = {setLoggedIn} />
-            <RegistrationForm />
         </div>
-    )
+    );
 };
 
 export default LoginPage;
