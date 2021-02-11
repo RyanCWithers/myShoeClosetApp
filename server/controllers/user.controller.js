@@ -21,7 +21,7 @@ module.exports = {
             })
             .catch(err => res.json(err));
         
-    },
+    }, //registerUser
 
     loginUser: async(req, res) =>{
         const user = await User.findOne({email: req.body.email});
@@ -41,12 +41,12 @@ module.exports = {
         res
             .cookie("usertoken", userToken, process.env.SECRET_KEY, {httpOnly: true})
             .json(user);
-    },
+    }, //loginUser
 
     logoutUser: (req, res) =>{
         res.clearCookie('usertoken');
         res.json('Succesful logout');
-    },
+    }, //logoutUser
     
     getLoggedInUser: (req, res) =>{
         if(!req.cookies.usertoken){
@@ -57,7 +57,7 @@ module.exports = {
         User.findOne({_id: decodedJWT.payload._id})
             .then(user => res.json(user))
             .catch(err => res.json(err)); 
-    },
+    }, //getLoggedInUser
 
     createShoe: (req, res) =>{
         if(!req.cookies.usertoken){
@@ -73,7 +73,7 @@ module.exports = {
             .then(user=> res.json(user))
             .catch(err => res.json(err));
 
-    },
+    }, //createShoe
 
     deleteShoe: (req, res) =>{
         if(!req.cookies.usertoken){
@@ -88,7 +88,7 @@ module.exports = {
 
             .then(user => res.json(user))
             .catch(err => res.json(err));
-    },
+    }, //deleteShoe
 
     getShoe: (req, res) =>{
         if(!req.cookies.usertoken){
@@ -102,7 +102,7 @@ module.exports = {
                 res.json(shoe);
             })
             .catch(err => res.json(err));
-    },
+    }, //getShoe
 
     updateShoe: (req, res) =>{
         if(!req.cookies.usertoken){
@@ -116,12 +116,12 @@ module.exports = {
                 "shoes.$.shoeName" : req.body.shoeName,
                 "shoes.$.shoeCompany" : req.body.shoeCompany,
                 "shoes.$.shoeSize" : req.body.shoeSize,
-                "shoes.$.shoeImgLink" : req.body.shoeImgLink
+                "shoes.$.shoeImgLink" : req.body.shoeImgLink,
+                "shoes.$.shoeType" : req.body.shoeType
             }},
             {new: true}
         )
             .then(user => res.json(user))
             .catch(err => res.json(err));
-    }
-
-}
+    } //updateShoe
+};

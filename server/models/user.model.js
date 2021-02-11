@@ -13,7 +13,8 @@ const shoeSchema = new mongoose.Schema({
     },
     shoeSize: {
         type: String,
-    }
+    },
+    shoeType: [String]
 });
 
 const UserSchema = new mongoose.Schema({
