@@ -10,7 +10,13 @@ const CreateShoePage = props =>{
         shoeName: '',
         shoeCompany: '',
         shoeSize: '',
-        shoeImgLink: ''
+        shoeImgLink: '',
+        shoeType: {
+            boot: false,
+            sneaker: false,
+            dressShoe: false,
+            sandal: false
+        }
     };
 
     const onSubmitHandler = (newShoe) =>{

@@ -5,7 +5,7 @@ function reducer(state, action){
         ...state,
         [action.type] : action.payload
     })
-}
+};
 
 const ShoeForm = props =>{
 
@@ -13,15 +13,37 @@ const ShoeForm = props =>{
     const [state, dispatch] = useReducer(reducer, initialState);
 
     function handleChange(e){
-        const {name, value} = e.target;
-        dispatch({
-            type: name,
-            payload: value
-        })
-    }
+        switch (e.target.type){
+
+            case 'checkbox':
+                const shoeTypeName = e.target.name;
+                state.shoeType[shoeTypeName] = !state.shoeType[shoeTypeName];
+                
+                dispatch({
+                    type: state.shoeType[shoeTypeName],
+                    value: !state.shoeType[shoeTypeName]
+                })
+
+                break;
+
+            default:
+                const {name, value} = e.target;
+
+                dispatch({
+                    type: name,
+                    payload: value
+                })
+                
+                break;
+        }
+        
+    };
+
+
 
     const onSubmitHandler = (e) =>{
         e.preventDefault();
+        console.log(state);
         if(state.shoeCompany !== '' && state.shoeSize !== '' && state.shoeName !== ''){ //if the required fields are filled out, then you can submit.
             onSubmitProp(state);
         } else {
@@ -30,7 +52,8 @@ const ShoeForm = props =>{
     };
 
     return(
-        <div>
+        <div className = "container-sm">
+            {JSON.stringify(state)}
             <form onSubmit = {onSubmitHandler}>
                 <label>
                     <span>Shoe Company:</span>
@@ -72,6 +95,22 @@ const ShoeForm = props =>{
                         value = {state.shoeImgLink}
                     />
                 </label>
+                <div>
+                    <label htmlFor = "boot">Boot</label>
+                    <input type = "checkbox" 
+                        name = "boot" 
+                        onClick = {handleChange} 
+                    />
+
+
+
+                    <label htmlFor = "shoeType.sneaker">Sneaker</label>
+                    <input type = "checkbox" name = "shoeType.sneaker" checked = {state.shoeType.sneaker} />
+                    <label htmlFor = "shoeType.dressShoe">Dress Shoe</label>
+                    <input type = "checkbox" name = "shoeType.dressShoe" checked = {state.shoeType.dressShoe}/>
+                    <label htmlFor = "shoeType.sandal">Sandal</label>
+                    <input type = "checkbox" name = "shoeType.sandal" checked = {state.shoeType.sandal} />
+                </div>
                 <input
                     type = "submit"
                     value = "Save Shoe"
