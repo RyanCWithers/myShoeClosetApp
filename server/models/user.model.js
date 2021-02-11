@@ -14,7 +14,12 @@ const shoeSchema = new mongoose.Schema({
     shoeSize: {
         type: String,
     },
-    shoeType: [String]
+    shoeType: {
+        boot: {type: Boolean, default: false},
+        sneaker: {type: Boolean, default: false},
+        dressShoe: {type: Boolean, default: false},
+        sandal: {type: Boolean, default: false}
+    }
 });
 
 const UserSchema = new mongoose.Schema({
