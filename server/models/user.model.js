@@ -4,15 +4,19 @@ const bcrypt = require('bcrypt');
 const shoeSchema = new mongoose.Schema({
     shoeCompany: {
         type: String,
+        default: ''
     },
     shoeName: {
         type: String,
+        default: ''
     },
     shoeImgLink: {
-        type: String
+        type: String,
+        default: ''
     },
     shoeSize: {
         type: String,
+        default: ''
     },
     shoeType: {
         boot: {type: Boolean, default: false},
