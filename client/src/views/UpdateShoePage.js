@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import ShoeForm from '../components/ShoeForm';
+import Navbar from '../components/Navbar';
 import {navigate} from '@reach/router';
 
 const UpdateShoePage = props =>{
@@ -29,6 +30,7 @@ const UpdateShoePage = props =>{
 
     return(
         <div>
+            <Navbar />
             {loaded?
             <ShoeForm initialState = {state} onSubmitProp = {onSubmitProp} />:
             <span>Loading...</span>

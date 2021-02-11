@@ -33,13 +33,11 @@ const ShoeForm = props =>{
                     type: name,
                     payload: value
                 })
-                
+
                 break;
         }
         
     };
-
-
 
     const onSubmitHandler = (e) =>{
         e.preventDefault();
@@ -99,17 +97,27 @@ const ShoeForm = props =>{
                     <label htmlFor = "boot">Boot</label>
                     <input type = "checkbox" 
                         name = "boot" 
-                        onClick = {handleChange} 
+                        onClick = {handleChange}
+                        checked = {state.shoeType.boot}
                     />
-
-
-
-                    <label htmlFor = "shoeType.sneaker">Sneaker</label>
-                    <input type = "checkbox" name = "shoeType.sneaker" checked = {state.shoeType.sneaker} />
-                    <label htmlFor = "shoeType.dressShoe">Dress Shoe</label>
-                    <input type = "checkbox" name = "shoeType.dressShoe" checked = {state.shoeType.dressShoe}/>
-                    <label htmlFor = "shoeType.sandal">Sandal</label>
-                    <input type = "checkbox" name = "shoeType.sandal" checked = {state.shoeType.sandal} />
+                    <label htmlFor = "sneaker">Sneaker</label>
+                    <input type = "checkbox" 
+                        name = "sneaker" 
+                        onClick = {handleChange}
+                        checked = {state.shoeType.sneaker}
+                    />
+                    <label htmlFor = "dressShoe">Dress Shoe</label>
+                    <input type = "checkbox" 
+                        name = "dressShoe" 
+                        onClick = {handleChange}
+                        checked = {state.shoeType.dressShoe}
+                    />
+                    <label htmlFor = "sandal">Sandal</label>
+                    <input type = "checkbox" 
+                        name = "sandal" 
+                        onClick = {handleChange}
+                        checked = {state.shoeType.sandal}
+                    />
                 </div>
                 <input
                     type = "submit"
