@@ -4,6 +4,7 @@ import MainUserPage from './views/MainUserPage';
 import CreateShoePage from './views/CreateShoePage';
 import UpdateShoePage from './views/UpdateShoePage';
 import RegistrationPage from './views/RegistrationPage';
+import UserAccountPage from './views/UserAccountPage';
 import {Router, navigate} from '@reach/router';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       
       <Router>
             <MainUserPage path = "/api/myShoeCloset/user"/>
+            <UserAccountPage path = "/api/myShoeCloset/user/:id" />
             <CreateShoePage path = "/api/myShoeCloset/user/createShoe"/>
             <LoginPage path = "/api/myShoeCloset/login"/>
             <UpdateShoePage path = "/api/myShoeCloset/user/:shoeId" />

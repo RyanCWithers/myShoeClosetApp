@@ -1,14 +1,4 @@
-import React, {useReducer, useState} from 'react';
-import axios from 'axios';
-import { navigate } from '@reach/router';
-
-const initialState = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-};
+import React, {useReducer} from 'react';
 
 function reducer(state, action) {
     return({
@@ -17,11 +7,10 @@ function reducer(state, action) {
     });
 }
 
-const RegistrationForm = props =>{
+const RegistrationForm = ({initialState, onSubmitProp}) =>{
 
     const [state, dispatch] = useReducer(reducer, initialState);
-    const [errs, setErrs] = useState('');
-    
+
     function handleChange(e){
         const {name, value} = e.target;
         dispatch({
@@ -32,23 +21,10 @@ const RegistrationForm = props =>{
 
     const onSubmitHandler = (e) =>{
         e.preventDefault();
-
         if(state.confirmPassword !== state.password){
             return(alert('Your passwords must match!'));
         }
-
-        axios.post('http://localhost:8000/api/myShoeCloset/register', state)
-            .then(res => {
-                console.log(res);
-                if(res.data.errors){
-                    setErrs(res.data.errors);
-                    console.log(errs);
-                }else{
-                    alert("Succesful registration!");
-                    navigate('/api/myShoeCloset/login');
-                }
-            })
-            .catch(err => console.log(err));
+        onSubmitProp(state);
     };
 
     return(
