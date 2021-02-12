@@ -23,6 +23,7 @@ module.exports = {
         
     }, //registerUser
 
+<<<<<<< HEAD
     updateUser: async(req, res) =>{
         const emailExists = await User.findOne({email: req.body.email});
 
@@ -41,6 +42,8 @@ module.exports = {
             .catch(err => res.json(err))
     }, //deleteUser
 
+=======
+>>>>>>> 553734bfee4f6833217e9e51c6033c37262683b9
     loginUser: async(req, res) =>{
         const user = await User.findOne({email: req.body.email});
         
