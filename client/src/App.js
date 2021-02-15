@@ -18,7 +18,7 @@ function App() {
       
       <Router>
             <MainUserPage path = "/api/myShoeCloset/user"/>
-            <UserAccountPage path = "/api/myShoeCloset/user/:id" />
+            <UserAccountPage path = "/api/myShoeCloset/user/account" />
             <CreateShoePage path = "/api/myShoeCloset/user/createShoe"/>
             <LoginPage path = "/api/myShoeCloset/login"/>
             <UpdateShoePage path = "/api/myShoeCloset/user/:shoeId" />

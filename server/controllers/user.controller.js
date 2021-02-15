@@ -71,7 +71,7 @@ module.exports = {
             return(res.json({msg: "You need to log in first!"}));
         }
         const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
-
+        
         User.findOne({_id: decodedJWT.payload._id})
             .then(user => res.json(user))
             .catch(err => res.json(err)); 

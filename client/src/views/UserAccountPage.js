@@ -1,17 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import RegistrationForm from '../components/RegistrationForm';
-import DeleteUserButton from '../components/DeleteUserButton';
+import Navbar from '../components/Navbar';
+import { Link } from '@reach/router';
 
 const UserAccountPage = props =>{
-    const [userInfo, setUserInfo] = useState({});
+    const [userInfo, setUserInfo] = useState('');
     const [errs, setErrs] = useState('');
-
+    const [loaded, setLoaded] = useState(false);
     useEffect(() =>{
-        axios.get("http://localhost:8000/api/myShoeCloset/user")
+        axios.get("http://localhost:8000/api/myShoeCloset/user", {withCredentials: true})
             .then(res => {
-                console.log(res);
                 setUserInfo(res.data);
+                setLoaded(true);
             })
             .catch(err => console.log(err));
     }, []);
@@ -28,10 +29,26 @@ const UserAccountPage = props =>{
             .catch(err => console.log(err));
     };
 
+    const deleteUser = () =>{
+        axios.delete("http://localhost:8000/api/myShoeCloset/user/"+ userInfo._id + "/delete")
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+    };
     return(
         <div>
-            <RegistrationForm initialState = {userInfo} onSubmitProp = {onSubmitHandler} />
-            <DeleteUserButton deleteId = {userInfo._id}/>
+            <Navbar />
+            {
+                loaded?
+                <>
+                    <RegistrationForm initialState = {userInfo} onSubmitProp = {onSubmitHandler} errs = {errs} passwordHidden = {true}/>
+                    <button onClick = {deleteUser}>Delete User Account</button>
+                    <Link to = "">Change Password?</Link>
+                </>:
+                
+                <p>Loading user information...</p>
+                
+            }
+            
         </div>
     );
 };

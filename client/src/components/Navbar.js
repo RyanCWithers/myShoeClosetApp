@@ -30,6 +30,7 @@ const Navbar = props =>{
                 <div className = "collapse navbar-collapse justify-content-end" id="myNav">
                     <div className = "navbar-nav">
                         <Link to = "/api/myShoeCloset/user" className = "nav-link nav-item">Home</Link> 
+                        <Link to = "/api/myShoeCloset/user/account" className = "nav-link nav-item">Account</Link>
                         <Link to = "/api/myShoeCloset/user/createShoe" className = "nav-link nav-item">Add Shoe</Link>
                         <Link to = "/api/myShoeCloset/login" onClick = {logoutHandler} className = "nav-link nav-item">Logout</Link>
                     </div>

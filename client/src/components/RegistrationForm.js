@@ -7,17 +7,18 @@ function reducer(state, action) {
     });
 }
 
-const RegistrationForm = ({initialState, onSubmitProp}) =>{
+const RegistrationForm = ({initialState, onSubmitProp, errs, passwordHidden}) =>{
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
     function handleChange(e){
         const {name, value} = e.target;
+        console.log(e.target);
         dispatch({
             type: name,
             payload: value
         })
-    }
+    };
 
     const onSubmitHandler = (e) =>{
         e.preventDefault();
@@ -30,7 +31,7 @@ const RegistrationForm = ({initialState, onSubmitProp}) =>{
     return(
         <div className = "container-sm">
             <div className = "card p-4">
-                <h3 className = "card-title">Register</h3>
+                <h3 className = "card-title">Account Info</h3>
                 <form onSubmit = {onSubmitHandler} className ="card-body">
                     <div className = "form-group row mb-2">
                         <label htmlFor = "firstName" className = "col-form-label col col-lg-2 d-none d-lg-inline">Name</label>
@@ -41,6 +42,7 @@ const RegistrationForm = ({initialState, onSubmitProp}) =>{
                                 onChange = {handleChange}
                                 placeholder = "First Name"
                                 className = "form-control"
+                                value = {state.firstName}
                             />
                             {
                                 errs.firstName?
@@ -59,6 +61,7 @@ const RegistrationForm = ({initialState, onSubmitProp}) =>{
                                 onChange = {handleChange}
                                 placeholder = "Last Name"
                                 className = "form-control"
+                                value = {state.lastName}
                             />
                             {
                                 errs.lastName?
@@ -80,6 +83,7 @@ const RegistrationForm = ({initialState, onSubmitProp}) =>{
                                 onChange = {handleChange}
                                 placeholder = "Email"
                                 className = "form-control"
+                                value = {state.email}
                             />
                             {
                                 errs.email?
@@ -92,7 +96,7 @@ const RegistrationForm = ({initialState, onSubmitProp}) =>{
                             }
                         </div> 
                     </div>
-                    <div className = "form-group row mb-2">
+                    <div className = "form-group row mb-2" hidden = {passwordHidden}>
                         <label htmlFor = "password" className = "col-form-label col-lg-2 d-none d-lg-inline">Password</label>
                         <div className = "col-lg-5">
                             <input
@@ -134,7 +138,7 @@ const RegistrationForm = ({initialState, onSubmitProp}) =>{
                     <div className = "col">
                         <input
                             type = "submit"
-                            value = "Register"
+                            value = "Save"
                             className = "btn btn-primary"
                         />
                     </div>
