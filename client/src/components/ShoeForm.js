@@ -54,7 +54,7 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
             <div className = "card p-4">
                 <h3 className = "card-title">{formTitle}</h3>
                 <form onSubmit = {onSubmitHandler} className = "card-body">
-                    <div className = "form-group row">
+                    <div className = "form-group row mb-2">
                         <label htmlFor = "shoeCompany" className = "col-form-label col-md-2 d-none d-md-inline">Brand</label>
                         <div className = "col-md-8">
                             <input
@@ -67,7 +67,7 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                             />
                         </div>
                     </div>
-                    <div className = "form-group row">
+                    <div className = "form-group row mb-2">
                         <label htmlFor = "shoeName" className = "col-form-label col-md-2 d-none d-md-inline">Shoe Name</label>
                         <div className = "col-md-8">
                             <input
@@ -80,9 +80,9 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                             />
                         </div>
                     </div>
-                    <div className = "form-group row">
+                    <div className = "form-group row mb-2">
                         <label htmlFor = "shoeSize" className = "col-form-label col-md-2 d-none d-md-inline">Size</label>
-                        <div className = "col-2">
+                        <div className = "col-6 col-md-4 col-lg-2">
                             <select 
                                 name = "shoeSize"
                                 onChange = {handleChange}
@@ -97,8 +97,8 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                                 }
                             </select>
                         </div>
-                        <div className = "col-6 row-col-4">
-                            <div className = "row">
+                        <div className = "col-6">
+                            <div className = "row row-cols-1 row-cols-lg-2 row-cols-xl-4">
                                 <div className = "col form-check">
                                     <input type = "checkbox" 
                                         name = "boot" 
@@ -138,7 +138,7 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                             </div>
                         </div>
                     </div>
-                    <div className = "form-group row">
+                    <div className = "form-group row mb-2">
                         <label htmlFor = "shoeImgLink" className = "col-form-label col-md-2 d-none d-md-inline">Shoe Link</label>
                         <div className = "col-md-8">
                             <input
@@ -147,19 +147,6 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                                 onChange = {handleChange}
                                 placeholder = "Optional"
                                 value = {state.shoeImgLink}
-                                className = "form-control"
-                            />
-                        </div>
-                    </div>
-                    <div className = "form-group row">
-                        <label htmlFor = "shoeName" className = "col-form-label col-md-2 d-none d-md-inline">Shoe Name</label>
-                        <div className = "col-md-8">
-                            <input
-                                type = "text"
-                                name = "shoeName"
-                                onChange = {handleChange}
-                                placeholder = "Shoe Name"
-                                value = {state.shoeName}
                                 className = "form-control"
                             />
                         </div>
