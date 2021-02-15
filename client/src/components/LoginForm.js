@@ -42,7 +42,7 @@ const LoginForm = (props) =>{
     return(
         <div className = "container-sm">
             <div className = "card p-4">
-                <h3 className = "card-title">User Login</h3> 
+                <h3 className = "card-title">Login</h3> 
                 <form onSubmit = {onSubmitHandler} className = "card-body justify-content-center">
                     {
                         errs?

@@ -30,7 +30,13 @@ const RegistrationPage = props =>{
 
     return(
         <div className = 'container-sm'>
-            <RegistrationForm initialState = {initialState} onSubmitProp = {onSubmitHandler} errs = {errs} passwordHidden = {false}/>
+            <RegistrationForm 
+                initialState = {initialState} 
+                onSubmitProp = {onSubmitHandler} 
+                errs = {errs} 
+                passwordHidden = {false}
+                formTitle = "Register User"
+            />
         </div>
     );
 };

@@ -7,7 +7,7 @@ function reducer(state, action) {
     });
 }
 
-const RegistrationForm = ({initialState, onSubmitProp, errs, passwordHidden}) =>{
+const RegistrationForm = ({initialState, onSubmitProp, errs, passwordHidden, formTitle}) =>{
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -31,7 +31,7 @@ const RegistrationForm = ({initialState, onSubmitProp, errs, passwordHidden}) =>
     return(
         <div className = "container-sm">
             <div className = "card p-4">
-                <h3 className = "card-title">Account Info</h3>
+                <h3 className = "card-title">{formTitle}</h3>
                 <form onSubmit = {onSubmitHandler} className ="card-body">
                     <div className = "form-group row mb-2">
                         <label htmlFor = "firstName" className = "col-form-label col col-lg-2 d-none d-lg-inline">Name</label>

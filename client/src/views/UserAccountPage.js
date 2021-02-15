@@ -2,12 +2,14 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import RegistrationForm from '../components/RegistrationForm';
 import Navbar from '../components/Navbar';
-import { Link } from '@reach/router';
+
 
 const UserAccountPage = props =>{
+    
     const [userInfo, setUserInfo] = useState('');
     const [errs, setErrs] = useState('');
     const [loaded, setLoaded] = useState(false);
+
     useEffect(() =>{
         axios.get("http://localhost:8000/api/myShoeCloset/user", {withCredentials: true})
             .then(res => {
@@ -40,9 +42,15 @@ const UserAccountPage = props =>{
             {
                 loaded?
                 <>
-                    <RegistrationForm initialState = {userInfo} onSubmitProp = {onSubmitHandler} errs = {errs} passwordHidden = {true}/>
+                    <RegistrationForm 
+                        initialState = {userInfo} 
+                        onSubmitProp = {onSubmitHandler} 
+                        errs = {errs} 
+                        passwordHidden = {true}
+                        formTitle = "Account Info"
+                    />
                     <button onClick = {deleteUser}>Delete User Account</button>
-                    <Link to = "">Change Password?</Link>
+                    
                 </>:
                 
                 <p>Loading user information...</p>

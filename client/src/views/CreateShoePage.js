@@ -31,7 +31,11 @@ const CreateShoePage = props =>{
     return(
         <div>
             <Navbar />
-            <ShoeForm initialState = {initialState} onSubmitProp = {onSubmitHandler}/>
+            <ShoeForm 
+                initialState = {initialState} 
+                onSubmitProp = {onSubmitHandler}
+                formTitle = "Create Shoe"
+            />
         </div>
     );
 };

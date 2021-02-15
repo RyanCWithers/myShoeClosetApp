@@ -31,8 +31,13 @@ const UpdateShoePage = props =>{
     return(
         <div>
             <Navbar />
-            {loaded?
-            <ShoeForm initialState = {state} onSubmitProp = {onSubmitProp} />:
+            {
+                loaded?
+                <ShoeForm 
+                    initialState = {state} 
+                    onSubmitProp = {onSubmitProp} 
+                    formTitle = "Update Shoe"
+                />:
             <span>Loading...</span>
             }
         </div>
