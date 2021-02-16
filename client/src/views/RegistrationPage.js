@@ -17,8 +17,11 @@ const RegistrationPage = props =>{
     const onSubmitHandler = registeredUser =>{
         axios.post("http://localhost:8000/api/myShoeCloset/register", registeredUser)
             .then(res => {
+                console.log(res);
                 if(res.data.errors){
                     setErrs(res.data.errors);
+                } else if(res.data.emailInUse){
+                    setErrs(res.data);
                     console.log(errs);
                 } else {
                     alert("Succesful registration!");

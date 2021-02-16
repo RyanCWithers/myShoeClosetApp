@@ -8,7 +8,7 @@ module.exports = {
         const userExists = await User.findOne({email: req.body.email});
 
         if (userExists){
-            return(res.json({msg: "Sorry. There is already a user that exists with that email!"}));
+            return(res.json({emailInUse: "Sorry. There is already a user that exists with that email!"}));
         }
 
         User.create(req.body)

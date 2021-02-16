@@ -15,7 +15,6 @@ function App() {
   
   return (
     <div className="App">
-      
       <Router>
             <MainUserPage path = "/api/myShoeCloset/user"/>
             <UserAccountPage path = "/api/myShoeCloset/user/account" />

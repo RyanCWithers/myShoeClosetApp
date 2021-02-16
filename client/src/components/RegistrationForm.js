@@ -13,7 +13,6 @@ const RegistrationForm = ({initialState, onSubmitProp, errs, passwordHidden, for
 
     function handleChange(e){
         const {name, value} = e.target;
-        console.log(e.target);
         dispatch({
             type: name,
             payload: value
@@ -90,6 +89,15 @@ const RegistrationForm = ({initialState, onSubmitProp, errs, passwordHidden, for
                                 <div className = "row">
                                     <div className = "form-text text-danger">
                                         {errs.email.message}   
+                                    </div>
+                                </div>:
+                                null
+                            }
+                            {
+                                errs.emailInUse?
+                                <div className = "row">
+                                    <div className = "form-text text-danger">
+                                        {errs.emailInUse}   
                                     </div>
                                 </div>:
                                 null

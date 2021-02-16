@@ -1,17 +1,8 @@
 import React from 'react';
 import {Link} from '@reach/router';
-import axios from 'axios';
+import logoutHandler from '../components/logouthandler';
 
 const Navbar = props =>{
-    
-    const logoutHandler = () =>{
-        axios.post("http://localhost:8000/api/myShoeCloset/logout/", {}, {withCredentials: true})
-            .then((res) => {
-                console.log(res);
-                document.cookie = "isLoggedIn=;Max-Age=0";
-            })
-            .catch((err) => console.log(err))
-    };
 
     return(
         <nav className = "navbar navbar-dark navbar-expand-md" id = "navBar">

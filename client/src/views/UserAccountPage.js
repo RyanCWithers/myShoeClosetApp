@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import RegistrationForm from '../components/RegistrationForm';
 import Navbar from '../components/Navbar';
-
+import logoutHandler from '../components/logouthandler';
 
 const UserAccountPage = props =>{
     
@@ -33,7 +33,10 @@ const UserAccountPage = props =>{
 
     const deleteUser = () =>{
         axios.delete("http://localhost:8000/api/myShoeCloset/user/"+ userInfo._id + "/delete")
-            .then(res => console.log(res))
+            .then(res => {
+                alert(res.data);
+                logoutHandler();
+            })
             .catch(err => console.log(err));
     };
     return(
