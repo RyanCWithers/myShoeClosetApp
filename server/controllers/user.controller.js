@@ -13,7 +13,6 @@ module.exports = {
 
         User.create(req.body)
             .then(user => {
-                user.save();
                 const userToken = jwt.sign({id: user._id}, process.env.SECRET_KEY);
                 res
                     .cookie('usertoken', userToken, process.env.SECRET_KEY, {httpOnly: true})
@@ -49,7 +48,9 @@ module.exports = {
         }
 
         const correctPassword = await bcrypt.compare(req.body.password, user.password);
-        
+
+        console.log(correctPassword);
+
         if(!correctPassword) {
             return(res.json('Invalid login attempt!'));
         }
@@ -76,6 +77,12 @@ module.exports = {
             .then(user => res.json(user))
             .catch(err => res.json(err)); 
     }, //getLoggedInUser
+
+    getAllUsers: (req, res) =>{
+        User.find({})
+            .then(users => res.json(users))
+            .catch(err => res.json(err));
+    }, //gets all users for development purposes
 
     createShoe: (req, res) =>{
         if(!req.cookies.usertoken){

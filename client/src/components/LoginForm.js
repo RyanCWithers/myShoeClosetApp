@@ -14,8 +14,8 @@ const LoginForm = (props) =>{
         if(email !== '' && password !== ''){
             setFieldEmpty({});
             axios.post("http://localhost:8000/api/myShoeCloset/login/", 
-            {email, password},
-            {withCredentials: true}
+                {email, password},
+                {withCredentials: true}
             )
             .then(res => {
                 console.log(res);

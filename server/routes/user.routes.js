@@ -9,6 +9,7 @@ module.exports = app =>{
 
     app.get("/api/myShoeCloset/user", authenticate, UserController.getLoggedInUser);
     app.get("/api/myShoeCloset/user/:shoeId", authenticate, UserController.getShoe);
+    app.get("/api/myShoeCloset/allUsers", UserController.getAllUsers); //for development purposes
 
     app.put("/api/myShoeCloset/user/:id/update", authenticate, UserController.updateUser);
     app.put("/api/myShoeCloset/user/createShoe",  authenticate, UserController.createShoe);

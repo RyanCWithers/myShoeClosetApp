@@ -64,7 +64,10 @@ const UserSchema = new mongoose.Schema({
 
 UserSchema.pre('save', function(next){
     bcrypt.hash(this.password, 10).then(hash =>{
+        console.log('My password is: ' + this.password);
+        console.log('My hash is: ' + hash);
         this.password = hash;
+        console.log('My new password is: ' + this.password);
         next();
     });
 });
