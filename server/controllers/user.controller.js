@@ -24,8 +24,8 @@ module.exports = {
 
     updateUser: async(req, res) =>{
         const emailExists = await User.findOne({email: req.body.email});
-
-        if(emailExists){
+        
+        if(emailExists._id != req.params.id){
             return(res.json({msg: 'This email already in use. Please choose another one.'}))
         }
         

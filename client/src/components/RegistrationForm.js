@@ -21,7 +21,7 @@ const RegistrationForm = ({initialState, onSubmitProp, errs, passwordHidden, for
 
     const onSubmitHandler = (e) =>{
         e.preventDefault();
-        if(state.confirmPassword !== state.password){
+        if(state.confirmPassword !== state.password && !passwordHidden){
             return(alert('Your passwords must match!'));
         }
         onSubmitProp(state);

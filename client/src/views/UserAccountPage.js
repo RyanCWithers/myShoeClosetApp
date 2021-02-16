@@ -20,7 +20,8 @@ const UserAccountPage = props =>{
     }, []);
 
     const onSubmitHandler = updatedUser =>{
-        axios.put("http://localhost:8000/api/myShoeCloset/user/" + userInfo._id +"/update", updatedUser)
+        
+        axios.put("http://localhost:8000/api/myShoeCloset/user/" + userInfo._id +"/update", updatedUser, {withCredentials: true})
             .then(res =>{
                 if(res.data.errors){
                     setErrs(res.data.errors);
