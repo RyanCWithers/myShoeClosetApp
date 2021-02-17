@@ -1,4 +1,5 @@
 import React, {useReducer} from 'react';
+import DeleteShoeButton from '../components/DeleteShoeButton';
 
 function reducer(state, action){
     return({
@@ -41,7 +42,6 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
 
     const onSubmitHandler = (e) =>{
         e.preventDefault();
-        console.log(state);
         if(state.shoeCompany !== '' && state.shoeSize !== '' && state.shoeName !== ''){ //if the required fields are filled out, then you can submit.
             onSubmitProp(state);
         } else {
@@ -53,6 +53,14 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
         <div className = "container-sm">
             <div className = "card p-4">
                 <h3 className = "card-title">{formTitle}</h3>
+                {
+                    state.shoeImgLink?
+                    <div className = "row justify-content-center">
+                        <img src = {state.shoeImgLink} alt = "Not Available" className = "col-3"/>
+                    </div>:
+                    null
+                }
+                {JSON.stringify(state)}
                 <form onSubmit = {onSubmitHandler} className = "card-body">
                     <div className = "form-group row mb-2">
                         <label htmlFor = "shoeCompany" className = "col-form-label col-md-2 d-none d-md-inline">Brand</label>
@@ -154,8 +162,13 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                     <input
                         type = "submit"
                         value = "Save Shoe"
-                        className = "btn btn-primary"
+                        className = "btn btn-primary d-block mx-auto mb-2"
                     />
+                    {
+                        formTitle === "Update Shoe"?
+                        <DeleteShoeButton shoeId = {state._id} />:
+                        null
+                    }
                 </form>
             </div>
         </div>

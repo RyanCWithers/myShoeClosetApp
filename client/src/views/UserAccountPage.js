@@ -53,7 +53,7 @@ const UserAccountPage = props =>{
                         passwordHidden = {true}
                         formTitle = "Account Info"
                     />
-                    <button onClick = {deleteUser}>Delete User Account</button>
+                    <button className = "btn btn-danger btn-sm mt-3" onClick = {deleteUser}>Delete User Account</button>
                     
                 </>:
                 

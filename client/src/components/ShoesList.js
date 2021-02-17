@@ -1,33 +1,32 @@
 import React, {useState} from 'react';
-import DeleteShoeButton from './DeleteShoeButton';
-import {Link} from '@reach/router';
+import { navigate } from '@reach/router';
+import stockShoeImg from "../images/question-square.svg";
 
 const ShoesList = ({shoes}) =>{
 
     const [shoeList, setShoeList] = useState(shoes);
-
-    const deleteShoeFromPage = (shoeId) =>{
-        setShoeList(shoeList.filter((item) => item._id !== shoeId));
-    };
     
     return(
-        <div>
-            <ul>
+        <div className = "container-sm">
+            <div className = "row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
                 {shoeList.map((item, index) =>(
-                    <li key = {index}>
-                        <img src = {item.shoeImgLink} alt="#"></img>
-                        {/*  add shoe image for stock photos */}
-                        <span>{item.shoeName}</span>
-                        <span>{item.shoeCompany}</span>
-                        <span>{item.shoeSize}</span>
-                        <Link to = {"/api/myShoeCloset/user/" + item._id}>
-                            <button>Edit</button>
-                        </Link>
-                        <DeleteShoeButton shoeId = {item._id} removeFromDom = {deleteShoeFromPage}/>
-                    </li>
+                    <div className = "col">
+                        <div key = {index} className = "card" onClick = {() => navigate("/api/myShoeCloset/user/" + item._id)}>
+                        {
+                            item.shoeImgLink?
+                            <img src = {item.shoeImgLink} alt = "shoe" className = "img-fluid"/>:
+                            <img src = {stockShoeImg} alt = "blank shoe" className = "img-fluid"/>
+                        }
+                            <div>
+                                <p>{item.shoeName}</p>
+                                <p>{item.shoeCompany}</p>
+                                <p>{item.shoeSize}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
                 ))}
-            </ul>
-            
+            </div>
         </div>
     )
 };

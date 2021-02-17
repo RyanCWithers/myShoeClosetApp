@@ -15,6 +15,7 @@ const UpdateShoePage = props =>{
             .then(res => {
                 setState(res.data);
                 setLoaded(true);
+                console.log(res.data);
             })
             .catch(err => console.log(err));
     }, [shoeId]);
