@@ -2,6 +2,7 @@ import React , {useEffect, useState} from 'react';
 import axios from 'axios';
 import ShoesList from '../components/ShoesList';
 import Navbar from '../components/Navbar';
+import ShoeFilter from '../components/ShoeFilter';
 
 const MainUserPage = props =>{
 
@@ -9,6 +10,11 @@ const MainUserPage = props =>{
     const [lastName, setLastName] = useState('');
     const [shoes, setShoes] = useState([]);
     const [loaded, setLoaded] = useState(false);
+    const [filteredShoes, setFilteredShoes] = useState([]);
+
+    const filterDom = shoeFilterValue =>{
+        console.log(shoeFilterValue);
+    };
 
     useEffect(()=>{
         axios.get("http://localhost:8000/api/myShoeCloset/user", {withCredentials: true})
@@ -28,7 +34,8 @@ const MainUserPage = props =>{
             {loaded?
             <>
                 <h1>Hello {firstName} {lastName}!</h1>
-                <ShoesList shoes = {shoes} />
+                <ShoeFilter shoes = {shoes} />
+                <ShoesList shoes = {shoes} filterDom = {filterDom}/>
             </>
             :
             <span>Loading...</span>

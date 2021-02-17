@@ -49,8 +49,6 @@ module.exports = {
 
         const correctPassword = await bcrypt.compare(req.body.password, user.password);
 
-        console.log(correctPassword);
-
         if(!correctPassword) {
             return(res.json('Invalid login attempt!'));
         }
