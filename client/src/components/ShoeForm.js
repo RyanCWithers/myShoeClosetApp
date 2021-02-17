@@ -60,7 +60,6 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                     </div>:
                     null
                 }
-                {JSON.stringify(state)}
                 <form onSubmit = {onSubmitHandler} className = "card-body">
                     <div className = "form-group row mb-2">
                         <label htmlFor = "shoeCompany" className = "col-form-label col-md-2 d-none d-md-inline">Brand</label>

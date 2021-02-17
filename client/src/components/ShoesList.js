@@ -11,7 +11,7 @@ const ShoesList = ({shoes}) =>{
             <div className = "row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
                 {shoeList.map((item, index) =>(
                     <div className = "col">
-                        <div key = {index} className = "card" onClick = {() => navigate("/api/myShoeCloset/user/" + item._id)}>
+                        <div key = {index} className = "card list-group-item-action" onClick = {() => navigate("/api/myShoeCloset/user/" + item._id)}>
                         {
                             item.shoeImgLink?
                             <img src = {item.shoeImgLink} alt = "shoe" className = "img-fluid"/>:
