@@ -29,7 +29,7 @@ const RegistrationForm = ({initialState, onSubmitProp, errs, passwordHidden, for
 
     return(
         <div className = "container-sm">
-            <div className = "card p-4">
+            <div className = "card p-4 mt-5">
                 <h3 className = "card-title">{formTitle}</h3>
                 <form onSubmit = {onSubmitHandler} className ="card-body">
                     <div className = "form-group row mb-2">

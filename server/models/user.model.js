@@ -22,7 +22,9 @@ const shoeSchema = new mongoose.Schema({
         boot: {type: Boolean, default: false},
         sneaker: {type: Boolean, default: false},
         dressShoe: {type: Boolean, default: false},
-        sandal: {type: Boolean, default: false}
+        sandal: {type: Boolean, default: false},
+        casual: {type: Boolean, default: false},
+        slipper: {type: Boolean, default: false}
     }
 });
 

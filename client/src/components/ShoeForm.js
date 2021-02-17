@@ -51,7 +51,7 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
 
     return(
         <div className = "container-sm">
-            <div className = "card p-4">
+            <div className = "card p-4 mt-5">
                 <h3 className = "card-title">{formTitle}</h3>
                 {
                     state.shoeImgLink?
@@ -108,6 +108,7 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                             <div className = "row row-cols-1 row-cols-lg-2 row-cols-xl-4">
                                 <div className = "col form-check">
                                     <input type = "checkbox" 
+                                        id = "boot"
                                         name = "boot" 
                                         onClick = {handleChange}
                                         checked = {state.shoeType.boot}
@@ -117,6 +118,7 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                                 </div>
                                 <div className ="col form-check">
                                     <input type = "checkbox" 
+                                        id = "sneaker"
                                         name = "sneaker" 
                                         onClick = {handleChange}
                                         checked = {state.shoeType.sneaker}
@@ -126,6 +128,7 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                                 </div>
                                 <div className = "col form-check">
                                     <input type = "checkbox" 
+                                        id = "dressShoe"
                                         name = "dressShoe" 
                                         onClick = {handleChange}
                                         checked = {state.shoeType.dressShoe}
@@ -135,12 +138,33 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                                 </div>
                                 <div className = "col form-check">
                                     <input type = "checkbox" 
+                                        id = "sandal"
                                         name = "sandal" 
                                         onClick = {handleChange}
                                         checked = {state.shoeType.sandal}
                                         className = "form-check-input"
                                     />
                                     <label htmlFor = "sandal" className = "form-check-label">Sandal</label>
+                                </div>
+                                <div className = "col form-check">
+                                    <input type = "checkbox" 
+                                        id = "casual"
+                                        name = "casual" 
+                                        onClick = {handleChange}
+                                        checked = {state.shoeType.casual}
+                                        className = "form-check-input"
+                                    />
+                                    <label htmlFor = "casual" className = "form-check-label">Casual</label>
+                                </div>
+                                <div className = "col form-check">
+                                    <input type = "checkbox" 
+                                        id = "slipper"
+                                        name = "slipper" 
+                                        onClick = {handleChange}
+                                        checked = {state.shoeType.slipper}
+                                        className = "form-check-input"
+                                    />
+                                    <label htmlFor = "slipper" className = "form-check-label">Slipper</label>
                                 </div>
                             </div>
                         </div>
