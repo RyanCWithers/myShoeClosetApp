@@ -5,7 +5,7 @@ function reducer(state, action){
     return({
         ...state,
         [action.type] : action.payload
-    })
+    });
 };
 
 const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
@@ -17,19 +17,16 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
         switch (e.target.type){
 
             case 'checkbox':
-                const shoeTypeName = e.target.name;
-                state.shoeType[shoeTypeName] = !state.shoeType[shoeTypeName];
-                
+                state.shoeType[e.target.name] = !state.shoeType[e.target.name];
                 dispatch({
-                    type: state.shoeType[shoeTypeName],
-                    value: !state.shoeType[shoeTypeName]
+                    type: e.target.name,
+                    payload: state.shoeType[e.target.name]
                 })
 
                 break;
 
             default:
                 const {name, value} = e.target;
-
                 dispatch({
                     type: name,
                     payload: value

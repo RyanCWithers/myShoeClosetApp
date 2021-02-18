@@ -7,35 +7,40 @@ import ShoeFilter from '../components/ShoeFilter';
 const MainUserPage = props =>{
 
     const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
     const [shoes, setShoes] = useState([]);
-    const [loaded, setLoaded] = useState(false);
     const [filteredShoes, setFilteredShoes] = useState([]);
-
-    const filterDom = shoeFilterValue =>{
-        console.log(shoeFilterValue);
-    };
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(()=>{
         axios.get("http://localhost:8000/api/myShoeCloset/user", {withCredentials: true})
             .then(user => {
                 setFirstName(user.data.firstName);
-                setLastName(user.data.lastName);
                 setShoes(user.data.shoes);
+                setFilteredShoes(user.data.shoes);
                 setLoaded(true);
                 console.log(user.data);
             })
             .catch(err => console.log(err))
-    }, [])
+    }, []);
+
+    const filterDom = filterVal =>{
+        switch (filterVal){
+            case 'all':
+                setFilteredShoes(shoes);
+                break;
+            default:
+                setFilteredShoes(shoes.filter(item => item.shoeType[filterVal] === true));
+        };
+    };
 
     return(
         <div className = "container-fluid">
             <Navbar/>
             {loaded?
             <>
-                <h1>Hello {firstName} {lastName}!</h1>
-                <ShoeFilter shoes = {shoes} />
-                <ShoesList shoes = {shoes} filterDom = {filterDom}/>
+                <h1>{firstName}'s Shoe Closet</h1>
+                <ShoeFilter filterDom = {filterDom}/>
+                <ShoesList shoes = {filteredShoes} />
             </>
             :
             <span>Loading...</span>
