@@ -3,6 +3,7 @@ import axios from 'axios';
 import ShoesList from '../components/ShoesList';
 import Navbar from '../components/Navbar';
 import ShoeFilter from '../components/ShoeFilter';
+import BackToTop from '../components/BackToTop';
 
 const MainUserPage = props =>{
 
@@ -38,9 +39,10 @@ const MainUserPage = props =>{
             <Navbar/>
             {loaded?
             <>
-                <h1>{firstName}'s Shoe Closet</h1>
+                <h1 >{firstName}'s Shoe Closet</h1>
                 <ShoeFilter filterDom = {filterDom}/>
                 <ShoesList shoes = {filteredShoes} />
+                <BackToTop />
             </>
             :
             <span>Loading...</span>
