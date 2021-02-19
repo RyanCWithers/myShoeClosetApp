@@ -41,6 +41,14 @@
 }
 
 #backToTop {
-  
+  z-index: 4;
+  width: 100%;
+  padding-right: 5%;
+  padding-bottom: 2%;
 }
 
+#backToTop button{
+  color: rgb(121, 126, 126);
+  width: 100px;
+  float: right;
+}
