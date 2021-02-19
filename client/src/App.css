@@ -7,3 +7,34 @@
   height: 7%;
 }
 
+.shoeCard {
+  height: 400px;
+  width: 100%;
+  border-radius: 20px;
+  margin-top: 5%;
+  background-color: rgb(0, 128, 128, 0.33);
+}
+
+.shoeCard:hover{
+  background-color: teal;
+  color: white;
+}
+  .shoeCardInfo {
+    padding: 5%;
+  }
+
+.imgContain {
+  height: 65%;
+  padding: 5%;
+}
+
+.shoeImg {
+  vertical-align: middle;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  border: 2px solid teal;
+  border-radius: 30px;
+  background-color: white;
+}
+
