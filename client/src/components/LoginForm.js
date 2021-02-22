@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import { navigate, Link } from '@reach/router';
+import { navigate } from '@reach/router';
 
 const LoginForm = (props) =>{
 
@@ -41,17 +41,25 @@ const LoginForm = (props) =>{
 
     return(
         <div className = "container-sm">
-            <div className = "card p-4" id = "login">
-                <h3 className = "card-title">Login</h3> 
+            <div className = "card p-4 mt-5" id = "login">
+                <ul className = "nav nav-tabs">
+                    <li className = "nav-item">
+                        <p className = "nav-link active btn" onClick = {() => navigate('/api/myShoeCloset/login')}>Login</p>
+                    </li>
+                    <li className = "nav-item">
+                        <p className = "nav-link btn border-light text-light" onClick = {() => navigate('/api/myShoeCloset/register')}>Register</p>
+                    </li>
+                </ul>
+                <h3 className = "card-title mt-2">Login</h3> 
                 <form onSubmit = {onSubmitHandler} className = "card-body justify-content-center">
                     {
                         errs?
-                        <span className = "text-danger">{errs}</span>:
+                        <span>{errs}</span>:
                         null
                     }
                     <div className = "form-group row">
                         <label htmlFor = "email" className = "col-form-label col-lg-2 d-none d-lg-inline">Email</label>
-                        <div className = "col-md-8">
+                        <div className = "col col-lg-8">
                             <input 
                                 type = "text"
                                 name = "email"
@@ -64,7 +72,7 @@ const LoginForm = (props) =>{
                         {
                             fieldEmpty.emailMsg?
                             <div className = "form-group row">
-                                <div className = "col form-text text-danger">
+                                <div className = "col form-text text-light">
                                     {fieldEmpty.emailMsg}   
                                 </div>
                             </div>:
@@ -72,7 +80,7 @@ const LoginForm = (props) =>{
                         }
                     <div className = "form-group row mt-2">
                         <label htmlFor = "password" className = "col-form-label col-lg-2 d-none d-lg-inline">Password</label>
-                        <div className = "col-md-8">
+                        <div className = "col col-lg-8">
                             <input 
                                 type = "password"
                                 name = "password"
@@ -85,7 +93,7 @@ const LoginForm = (props) =>{
                         {
                             fieldEmpty.passwordMsg?
                             <div className = "form-group row">
-                                <div className = "col form-text text-danger">
+                                <div className = "col form-text text-light">
                                     {fieldEmpty.passwordMsg}   
                                 </div>
                             </div>:
@@ -96,13 +104,10 @@ const LoginForm = (props) =>{
                             <input 
                                 type = "submit"
                                 value = "Login"
-                                className = "btn btn-primary"
+                                className = "btn text-light border-light mt-3"
                             />
                         </div>
                     </div>
-                    <Link to = "/api/myShoeCloset/register">
-                        <p className = "form-text">New User?</p>
-                    </Link>
                 </form>
             </div>
         </div>

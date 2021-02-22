@@ -4,7 +4,7 @@ import LoginForm from '../components/LoginForm';
 const LoginPage = ({setLoggedIn}) =>{
     return(
         <div className = "container-sm">
-            <LoginForm setLoggedIn = {setLoggedIn} />
+            <LoginForm setLoggedIn = {setLoggedIn}/>
         </div>
     );
 };

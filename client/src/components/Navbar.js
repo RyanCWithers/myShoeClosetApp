@@ -5,7 +5,7 @@ import logoutHandler from '../components/logouthandler';
 const Navbar = props =>{
 
     return(
-        <nav className = "navbar navbar-dark navbar-expand-md mb-5" id = "navBar">
+        <nav className = "navbar navbar-dark navbar-expand-md mb-1" id = "navBar">
             <div className = "container">
                 <span className = "navbar-brand">myShoeCloset</span>
                 <button 

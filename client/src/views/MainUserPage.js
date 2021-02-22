@@ -39,7 +39,7 @@ const MainUserPage = props =>{
             <Navbar/>
             {loaded?
             <>
-                <h1 >{firstName}'s Shoe Closet</h1>
+                <h1>{firstName}'s Shoe Closet</h1>
                 <ShoeFilter filterDom = {filterDom}/>
                 <ShoesList shoes = {filteredShoes} />
                 <BackToTop />

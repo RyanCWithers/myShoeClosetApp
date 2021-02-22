@@ -6,7 +6,7 @@ const ShoesList = ({shoes}) =>{
  
     return(
         <div className = "container-sm">
-            <div className = "row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4">
+            <div className = "row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 w-100">
                 {shoes.map((item, index) =>(
                     <div className = "col">
                         <div class = "shoeCard">

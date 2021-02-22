@@ -1,4 +1,5 @@
 import React, {useReducer} from 'react';
+import { navigate } from '@reach/router';
 
 function reducer(state, action) {
     return({
@@ -29,12 +30,20 @@ const RegistrationForm = ({initialState, onSubmitProp, errs, passwordHidden, for
 
     return(
         <div className = "container-sm">
-            <div className = "card p-4 mt-5">
-                <h3 className = "card-title">{formTitle}</h3>
+            <div className = "card p-4 mt-5" id = "register">
+                <ul className = "nav nav-tabs">
+                    <li className = "nav-item">
+                        <p className = "nav-link btn border-light text-light" onClick = {() => navigate('/api/myShoeCloset/login')}>Login</p>
+                    </li>
+                    <li className = "nav-item">
+                        <p className = "nav-link btn border-light active" onClick = {() => navigate('/api/myShoeCloset/register')}>Register</p>
+                    </li>
+                </ul>
+                <h3 className = "card-title mt-2">{formTitle}</h3>
                 <form onSubmit = {onSubmitHandler} className ="card-body">
-                    <div className = "form-group row mb-2">
+                    <div className = "form-group row">
                         <label htmlFor = "firstName" className = "col-form-label col col-lg-2 d-none d-lg-inline">Name</label>
-                        <div className = "col-lg-5">
+                        <div className = "col-lg-5 mb-2">
                             <input
                                 type = "text"
                                 name = "firstName"
@@ -46,14 +55,14 @@ const RegistrationForm = ({initialState, onSubmitProp, errs, passwordHidden, for
                             {
                                 errs.firstName?
                                 <div className = "row">
-                                    <div className = "form-text text-danger">
+                                    <div className = "form-text text-light">
                                         {errs.firstName.message}   
                                     </div>
                                 </div>:
                                 null
                             }
                         </div>
-                        <div className = "col-lg-5">
+                        <div className = "col-lg-5 mb-2">
                             <input
                                 type = "text"
                                 name = "lastName"
@@ -65,7 +74,7 @@ const RegistrationForm = ({initialState, onSubmitProp, errs, passwordHidden, for
                             {
                                 errs.lastName?
                                 <div className = "row">
-                                    <div className = "form-text text-danger">
+                                    <div className = "form-text text-light">
                                         {errs.lastName.message}   
                                     </div>
                                 </div>:
@@ -87,7 +96,7 @@ const RegistrationForm = ({initialState, onSubmitProp, errs, passwordHidden, for
                             {
                                 errs.email?
                                 <div className = "row">
-                                    <div className = "form-text text-danger">
+                                    <div className = "form-text text-light">
                                         {errs.email.message}   
                                     </div>
                                 </div>:
@@ -96,7 +105,7 @@ const RegistrationForm = ({initialState, onSubmitProp, errs, passwordHidden, for
                             {
                                 errs.emailInUse?
                                 <div className = "row">
-                                    <div className = "form-text text-danger">
+                                    <div className = "form-text text-light">
                                         {errs.emailInUse}   
                                     </div>
                                 </div>:
@@ -104,9 +113,9 @@ const RegistrationForm = ({initialState, onSubmitProp, errs, passwordHidden, for
                             }
                         </div> 
                     </div>
-                    <div className = "form-group row mb-2" hidden = {passwordHidden}>
+                    <div className = "form-group row" hidden = {passwordHidden}>
                         <label htmlFor = "password" className = "col-form-label col-lg-2 d-none d-lg-inline">Password</label>
-                        <div className = "col-lg-5">
+                        <div className = "col-lg-5 mb-2">
                             <input
                                 type = "password"
                                 name = "password"
@@ -117,14 +126,14 @@ const RegistrationForm = ({initialState, onSubmitProp, errs, passwordHidden, for
                             {
                                 errs.password?
                                 <div className = "row">
-                                    <div className = "form-text text-danger">
+                                    <div className = "form-text text-light">
                                         {errs.password.message}   
                                     </div>
                                 </div>:
                                 null
                             }
                         </div>
-                        <div className = "col-lg-5">
+                        <div className = "col-lg-5 mb-2">
                             <input
                                 type = "password"
                                 name = "confirmPassword"
@@ -135,7 +144,7 @@ const RegistrationForm = ({initialState, onSubmitProp, errs, passwordHidden, for
                             {
                                 (state.password && state.confirmPassword && state.password !== state.confirmPassword)?
                                 <div className = "row">
-                                    <div className = "form-text text-danger">
+                                    <div className = "form-text text-light">
                                         <p>Passwords do not match!</p>   
                                     </div>
                                 </div>:
@@ -147,7 +156,7 @@ const RegistrationForm = ({initialState, onSubmitProp, errs, passwordHidden, for
                         <input
                             type = "submit"
                             value = "Save"
-                            className = "btn btn-primary"
+                            className = "btn text-light border-light mt-3"
                         />
                     </div>
                 </form>
