@@ -9,7 +9,7 @@ const ShoeFilter = ({filterDom}) =>{
     }
     return(
         <div className = "row justify-content-center">
-            <div className = "col-3">
+            <div className = "col-6 col-md-3">
                 <select name = "filtershoes" className = "form-select" onChange = {onChangeHandler}>
                     {
                         shoeTypeList.map((item, index) =>(
