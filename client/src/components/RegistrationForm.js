@@ -31,7 +31,7 @@ const RegistrationForm = ({initialState, onSubmitProp, errs, passwordHidden, for
     return(
         <div className = "container-sm">
             <div className = "card p-4 mt-5" id = "register">
-                <ul className = "nav nav-tabs">
+                <ul className = "nav nav-tabs" hidden = {passwordHidden}>
                     <li className = "nav-item">
                         <p className = "nav-link btn border-light text-light" onClick = {() => navigate('/api/myShoeCloset/login')}>Login</p>
                     </li>

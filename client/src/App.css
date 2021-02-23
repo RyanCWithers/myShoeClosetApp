@@ -3,7 +3,7 @@
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#login, #register {
+#login, #register, #shoeForm {
   background-color: teal;
   color: white;
 }
@@ -45,6 +45,10 @@
   object-fit: contain;
   border-radius: 30px;
   background-color: white;
+}
+
+#shoePreview {
+  width: 200px;
 }
 
 #backToTop {

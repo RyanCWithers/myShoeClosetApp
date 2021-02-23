@@ -22,7 +22,6 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                     type: e.target.name,
                     payload: state.shoeType[e.target.name]
                 })
-
                 break;
 
             default:
@@ -31,7 +30,6 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                     type: name,
                     payload: value
                 })
-
                 break;
         }
         
@@ -48,12 +46,12 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
 
     return(
         <div className = "container-sm">
-            <div className = "card p-4 mt-5">
+            <div className = "card p-4 mt-5" id = "shoeForm">
                 <h3 className = "card-title">{formTitle}</h3>
                 {
                     state.shoeImgLink?
                     <div className = "row justify-content-center">
-                        <img src = {state.shoeImgLink} alt = "Not Available" className = "col-3"/>
+                        <img src = {state.shoeImgLink} alt = "Not Available" className = "col-3" id = "shoePreview"/>
                     </div>:
                     null
                 }
@@ -182,7 +180,7 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                     <input
                         type = "submit"
                         value = "Save Shoe"
-                        className = "btn btn-primary d-block mx-auto mb-2"
+                        className = "btn text-light border-light my-3"
                     />
                     {
                         formTitle === "Update Shoe"?

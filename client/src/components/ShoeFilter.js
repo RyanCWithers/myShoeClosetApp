@@ -8,13 +8,19 @@ const ShoeFilter = ({filterDom}) =>{
         filterDom(e.target.value);
     }
     return(
-        <select name = "filtershoes" onChange = {onChangeHandler}>
-            {
-                shoeTypeList.map((item, index) =>(
-                    <option key = {index} name = {item} value = {item}>{item.toUpperCase()}</option>
-                ))
-            }
-        </select>
+        <div className = "row justify-content-center">
+            <div className = "col-3">
+                <select name = "filtershoes" className = "form-select" onChange = {onChangeHandler}>
+                    {
+                        shoeTypeList.map((item, index) =>(
+                            <option key = {index} name = {item} value = {item}>{item.toUpperCase()}</option>
+                        ))
+                    }
+                </select>
+            </div>
+            
+        </div>
+        
     );
 };
 
