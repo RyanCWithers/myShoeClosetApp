@@ -11,6 +11,7 @@ const MainUserPage = props =>{
     const [shoes, setShoes] = useState([]);
     const [filteredShoes, setFilteredShoes] = useState([]);
     const [loaded, setLoaded] = useState(false);
+    let shoeTotals = filteredShoes.length;
 
     useEffect(()=>{
         axios.get("http://localhost:8000/api/myShoeCloset/user", {withCredentials: true})
@@ -37,15 +38,16 @@ const MainUserPage = props =>{
     return(
         <div className = "container-fluid">
             <Navbar/>
-            {loaded?
-            <>
-                <h1>{firstName}'s Shoe Closet</h1>
-                <ShoeFilter filterDom = {filterDom}/>
-                <ShoesList shoes = {filteredShoes} />
-                <BackToTop />
-            </>
-            :
-            <span>Loading...</span>
+            {
+                loaded?
+                <>
+                    <h1>{firstName}'s Shoe Closet</h1>
+                    <ShoeFilter filterDom = {filterDom} shoeTotals = {shoeTotals}/>
+                    <ShoesList shoes = {filteredShoes} />
+                    <BackToTop />
+                </>
+                :
+                <span>Loading...</span>
             }
 
         </div>

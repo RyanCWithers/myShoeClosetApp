@@ -26,6 +26,7 @@ const shoeSchema = new mongoose.Schema({
         casual: {type: Boolean, default: false},
         slipper: {type: Boolean, default: false}
     }
+
 });
 
 const UserSchema = new mongoose.Schema({

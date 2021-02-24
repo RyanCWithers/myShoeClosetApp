@@ -24,7 +24,7 @@ module.exports = {
 
     updateUser: async(req, res) =>{
         const emailExists = await User.findOne({email: req.body.email});
-        
+        console.log(emailExists);
         if(emailExists._id != req.params.id){
             return(res.json({msg: 'This email already in use. Please choose another one.'}))
         }
@@ -65,15 +65,17 @@ module.exports = {
         res.json('Succesful logout');
     }, //logoutUser
     
-    getLoggedInUser: (req, res) =>{
+    getLoggedInUser: async(req, res) =>{
         if(!req.cookies.usertoken){
             return(res.json({msg: "You need to log in first!"}));
         }
         const decodedJWT = jwt.decode(req.cookies.usertoken, {complete: true});
         
-        User.findOne({_id: decodedJWT.payload._id})
-            .then(user => res.json(user))
-            .catch(err => res.json(err)); 
+        const loggedInUser = await User.findOne({_id: decodedJWT.payload._id});
+        
+        res.json(loggedInUser);
+        
+            
     }, //getLoggedInUser
 
     getAllUsers: (req, res) =>{
