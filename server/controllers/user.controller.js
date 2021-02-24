@@ -24,14 +24,22 @@ module.exports = {
 
     updateUser: async(req, res) =>{
         const emailExists = await User.findOne({email: req.body.email});
-        console.log(emailExists);
-        if(emailExists._id != req.params.id){
-            return(res.json({msg: 'This email already in use. Please choose another one.'}))
+        
+        if(emailExists == null){
+            User.findOneAndUpdate({_id: req.params.id}, req.body, {new: true, runValidators: true})
+                .then(updatedUser => res.json(updatedUser))
+                .catch(err => res.json(err));
+        } else {
+            if(emailExists._id != req.params.id){
+                return(res.json({emailInUse: 'This email already in use. Please choose another one.'}));
+            } else {
+                User.findOneAndUpdate({_id: req.params.id}, req.body, {new: true, runValidators: true})
+                    .then(updatedUser => res.json(updatedUser))
+                    .catch(err => res.json(err));
+            }
         }
         
-        User.findOneAndUpdate({_id: req.params.id}, req.body, {new: true, runValidators: true})
-            .then(updatedUser => res.json(updatedUser))
-            .catch(err => res.json(err));
+        
     }, //updateUser
 
     deleteUser: (req, res) =>{

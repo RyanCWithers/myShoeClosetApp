@@ -25,8 +25,10 @@ const UserAccountPage = props =>{
             .then(res =>{
                 if(res.data.errors){
                     setErrs(res.data.errors);
+                } else if(res.data.emailInUse){
+                    setErrs(res.data);
                 } else {
-                    alert('Your account was updated!');
+                    alert('Your account was updated!')
                 }
             })
             .catch(err => console.log(err));
@@ -35,7 +37,7 @@ const UserAccountPage = props =>{
     const deleteUser = () =>{
         axios.delete("http://localhost:8000/api/myShoeCloset/user/"+ userInfo._id + "/delete")
             .then(res => {
-                alert(res.data);
+                alert(res.data.msg);
                 logoutHandler();
             })
             .catch(err => console.log(err));

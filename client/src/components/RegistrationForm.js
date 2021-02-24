@@ -30,6 +30,7 @@ const RegistrationForm = ({initialState, onSubmitProp, errs, passwordHidden, for
 
     return(
         <div className = "container-sm">
+            {JSON.stringify(errs)}
             <div className = "card p-4 mt-5" id = "register">
                 <ul className = "nav nav-tabs" hidden = {passwordHidden}>
                     <li className = "nav-item">
