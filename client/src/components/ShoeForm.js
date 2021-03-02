@@ -12,6 +12,7 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
 
     const [state, dispatch] = useReducer(reducer, initialState);
     const shoeSizeArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+    let shoeSearch = state.shoeName.split(" ").join("+");
 
     function handleChange(e){
         switch (e.target.type){
@@ -21,6 +22,13 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                 dispatch({
                     type: e.target.name,
                     payload: state.shoeType[e.target.name]
+                })
+                break;
+
+            case 'file':
+                dispatch({
+                    type: e.target.name,
+                    payload: "file:///" + state.shoeImgLink
                 })
                 break;
 
@@ -46,6 +54,7 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
 
     return(
         <div className = "container-sm">
+            
             <div className = "card p-4 mt-5" id = "shoeForm">
                 <h3 className = "card-title">{formTitle}</h3>
                 {
@@ -73,12 +82,18 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                         <label htmlFor = "shoeName" className = "col-form-label col-md-2 d-none d-md-inline">Shoe Name</label>
                         <div className = "col-md-8">
                             <input
-                                type = "text"
+                                type = "search"
                                 name = "shoeName"
                                 onChange = {handleChange}
                                 placeholder = "Shoe Name"
                                 value = {state.shoeName}
                                 className = "form-control"
+                            />
+                            <input
+                                type = "submit"
+                                value = "Search"
+                                onClick = {() => 
+                                    window.open(`https://www.google.com/search?q=${shoeSearch}`)}
                             />
                         </div>
                     </div>
