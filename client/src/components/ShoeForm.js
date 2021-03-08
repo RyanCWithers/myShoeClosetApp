@@ -1,4 +1,5 @@
 import React, {useReducer} from 'react';
+import axios from 'axios';
 import DeleteShoeButton from '../components/DeleteShoeButton';
 
 function reducer(state, action){
@@ -12,7 +13,6 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
 
     const [state, dispatch] = useReducer(reducer, initialState);
     const shoeSizeArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
-    let shoeSearch = state.shoeName.split(" ").join("+");
 
     function handleChange(e){
         switch (e.target.type){
@@ -22,13 +22,6 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                 dispatch({
                     type: e.target.name,
                     payload: state.shoeType[e.target.name]
-                })
-                break;
-
-            case 'file':
-                dispatch({
-                    type: e.target.name,
-                    payload: "file:///" + state.shoeImgLink
                 })
                 break;
 
@@ -43,6 +36,10 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
         
     };
 
+    const searchForShoe = () =>{
+        window.open(`https://www.google.com/search?q=${state.shoeName}`);
+    };
+
     const onSubmitHandler = (e) =>{
         e.preventDefault();
         if(state.shoeCompany !== '' && state.shoeSize !== '' && state.shoeName !== ''){ //if the required fields are filled out, then you can submit.
@@ -54,7 +51,6 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
 
     return(
         <div className = "container-sm">
-            
             <div className = "card p-4 mt-5" id = "shoeForm">
                 <h3 className = "card-title">{formTitle}</h3>
                 {
@@ -82,18 +78,12 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                         <label htmlFor = "shoeName" className = "col-form-label col-md-2 d-none d-md-inline">Shoe Name</label>
                         <div className = "col-md-8">
                             <input
-                                type = "search"
+                                type = "text"
                                 name = "shoeName"
                                 onChange = {handleChange}
                                 placeholder = "Shoe Name"
                                 value = {state.shoeName}
                                 className = "form-control"
-                            />
-                            <input
-                                type = "submit"
-                                value = "Search"
-                                onClick = {() => 
-                                    window.open(`https://www.google.com/search?q=${shoeSearch}`)}
                             />
                         </div>
                     </div>
@@ -120,7 +110,7 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                                     <input type = "checkbox" 
                                         id = "boot"
                                         name = "boot" 
-                                        onClick = {handleChange}
+                                        onChange = {handleChange}
                                         checked = {state.shoeType.boot}
                                         className = "form-check-input"
                                     />
@@ -130,7 +120,7 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                                     <input type = "checkbox" 
                                         id = "sneaker"
                                         name = "sneaker" 
-                                        onClick = {handleChange}
+                                        onChange = {handleChange}
                                         checked = {state.shoeType.sneaker}
                                         className = "form-check-input"
                                     />
@@ -140,7 +130,7 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                                     <input type = "checkbox" 
                                         id = "dressShoe"
                                         name = "dressShoe" 
-                                        onClick = {handleChange}
+                                        onChange = {handleChange}
                                         checked = {state.shoeType.dressShoe}
                                         className = "form-check-input"
                                     />
@@ -150,7 +140,7 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                                     <input type = "checkbox" 
                                         id = "sandal"
                                         name = "sandal" 
-                                        onClick = {handleChange}
+                                        onChange = {handleChange}
                                         checked = {state.shoeType.sandal}
                                         className = "form-check-input"
                                     />
@@ -160,7 +150,7 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                                     <input type = "checkbox" 
                                         id = "casual"
                                         name = "casual" 
-                                        onClick = {handleChange}
+                                        onChange = {handleChange}
                                         checked = {state.shoeType.casual}
                                         className = "form-check-input"
                                     />
@@ -170,7 +160,7 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                                     <input type = "checkbox" 
                                         id = "slipper"
                                         name = "slipper" 
-                                        onClick = {handleChange}
+                                        onChange = {handleChange}
                                         checked = {state.shoeType.slipper}
                                         className = "form-check-input"
                                     />
@@ -186,7 +176,7 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                                 type = "text"
                                 name = "shoeImgLink"
                                 onChange = {handleChange}
-                                placeholder = "Optional"
+                                placeholder = "Image Link (Optional)"
                                 value = {state.shoeImgLink}
                                 className = "form-control"
                             />
@@ -195,7 +185,7 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                     <input
                         type = "submit"
                         value = "Save Shoe"
-                        className = "btn text-light border-light my-3"
+                        className = "btn text-light border-light mt-2"
                     />
                     {
                         formTitle === "Update Shoe"?
@@ -203,6 +193,11 @@ const ShoeForm = ({initialState, onSubmitProp, formTitle}) =>{
                         null
                     }
                 </form>
+                <button
+                    onClick = {searchForShoe}
+                    className = "btn text-light border-light mx-auto btn-sm"
+                >Search for Shoe
+                </button>
             </div>
         </div>
     )
