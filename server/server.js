@@ -14,10 +14,10 @@ require('./routes/user.routes')(app);
 
 //server production assets
 
-if(process.env.NODE_ENV === "production"){
-    app.use(express.static(path.join("client/build")));
-    app.get("*", (req, res) => res.sendFile(path.resolve(__dirname, "client", "build", "index.html")))
-}
+// if(process.env.NODE_ENV === "production"){
+//     app.use(express.static(path.join("client/build")));
+//     app.get("*", (req, res) => res.sendFile(path.resolve(__dirname, "client", "build", "index.html")))
+// }
 
 app.listen(process.env.PORT_NAME, () =>{console.log(`You are listening on port ${process.env.PORT_NAME}!`)});
 
